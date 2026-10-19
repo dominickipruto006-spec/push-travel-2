@@ -1,0 +1,7 @@
+{
+  "name": "Push World Travel Ltd - East African Safaris & Tours",
+  "description": "Premier East African tour operator offering customized wildlife safaris, beach holidays, and gorilla trekking adventures in Kenya, Tanzania, Uganda, and Rwanda.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
