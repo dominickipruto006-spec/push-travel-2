@@ -74,13 +74,13 @@ export const QuoteRequestModal: React.FC<QuoteRequestModalProps> = ({
             <X className="w-4 h-4" />
           </button>
           <span className="text-xs font-bold text-amber-300 uppercase tracking-widest block mb-1">
-            Push World Travel · Headquarters: Northern By-Pass
+            Push World Travel · Headquarters: Push Building, Thome, Northern Bypass
           </span>
           <h3 className="text-2xl font-black font-['Outfit',sans-serif]">
             Request A Tailored Travel Proposal
           </h3>
           <p className="text-xs text-blue-100 mt-1">
-            Personalized within 2 hours by our travel specialists at our Northern By-Pass headquarters.
+            Personalized within 2 hours by our travel specialists at our Push Building, Thome headquarters.
           </p>
         </div>
 
@@ -114,7 +114,7 @@ export const QuoteRequestModal: React.FC<QuoteRequestModalProps> = ({
             </div>
 
             <p className="text-slate-600 text-xs max-w-md mx-auto">
-              Our safari coordinator at our Northern By-Pass headquarters is preparing your day-by-day itinerary and vehicle logistics. An official quote will be delivered to your email shortly.
+              Our safari coordinator at our Push Building, Thome headquarters is preparing your day-by-day itinerary and vehicle logistics. An official quote will be delivered to your email shortly.
             </p>
 
             <div className="pt-2 flex justify-center gap-3">

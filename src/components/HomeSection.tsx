@@ -245,7 +245,7 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
                 Ready to Plan Your Dream Safari?
               </h3>
               <p className="mt-2 text-xs sm:text-sm text-slate-300 leading-relaxed">
-                Connect directly with our itinerary planning team at our <strong className="text-white">Northern By-Pass office in Nairobi</strong>. Call or WhatsApp us at <strong className="text-amber-300">0725 356 926</strong> or request a tailored proposal.
+                Connect directly with our itinerary planning team at <strong className="text-white">Push Building, Thome along Northern Bypass in Nairobi</strong>. Call or WhatsApp us at <strong className="text-amber-300">0725 356 926</strong> or request a tailored proposal.
               </p>
             </div>
 

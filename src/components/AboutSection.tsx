@@ -66,13 +66,13 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mb-16">
           <div className="lg:col-span-7 space-y-4 text-slate-700 text-sm sm:text-base leading-relaxed">
             <div className="flex items-center gap-2 text-xs font-bold text-[#ea580c] uppercase tracking-wider">
-              <Sparkles className="w-4 h-4" /> Northern By-Pass · Nairobi, Kenya
+              <Sparkles className="w-4 h-4" /> Push Building, Thome · Northern Bypass, Nairobi
             </div>
             <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0a2265] tracking-tight font-['Outfit',sans-serif]">
               Crafting Unforgettable East African Safaris &amp; Tours
             </h2>
             <p className="text-justify font-normal">
-              Headquartered along the <strong className="text-slate-900">Northern By-Pass in Nairobi, Kenya</strong>, Push World Travel Ltd is dedicated to offering personalized, premium wildlife safaris, gorilla trekking adventures, Swahili beach holidays in Zanzibar and Diani, and reliable corporate travel solutions.
+              Headquartered at <strong className="text-slate-900">Push Building, Thome along the Northern Bypass in Nairobi, Kenya</strong>, Push World Travel Ltd is dedicated to offering personalized, premium wildlife safaris, gorilla trekking adventures, Swahili beach holidays in Zanzibar and Diani, and reliable corporate travel solutions.
             </p>
             <p className="text-justify font-normal">
               Our philosophy revolves around authenticity, safety, and tailored itineraries. We ensure every traveler experiences the breathtaking beauty and wildlife of East Africa with seasoned local guides and comfortable 4x4 vehicles.
@@ -83,7 +83,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
                 <MapPin className="w-5 h-5 text-[#801416] shrink-0" />
                 <div>
                   <span className="block text-xs font-bold text-slate-900">Physical Office Hub</span>
-                  <span className="text-[11px] text-slate-500">Northern By-Pass, Nairobi</span>
+                  <span className="text-[11px] text-slate-500">Push Building, Thome, Northern Bypass</span>
                 </div>
               </div>
               <div className="p-3.5 bg-white rounded-xl border border-slate-200/90 shadow-2xs flex items-center gap-3">
@@ -222,7 +222,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
           {/* Direct CTA */}
           <div className="mt-10 pt-6 border-t border-slate-100 text-center">
             <p className="text-xs sm:text-sm text-slate-600 mb-3">
-              Have a specific question not covered here? Reach out to our Northern By-Pass office directly.
+              Have a specific question not covered here? Reach out to our Push Building, Thome, Northern Bypass office directly.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3">
               {onContactClick && (

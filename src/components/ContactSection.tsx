@@ -124,7 +124,7 @@ export const ContactSection: React.FC = () => {
                   <div>
                     <strong className="text-slate-900">Kenya :</strong>{' '}
                     <span className="text-[#801416] font-semibold">
-                      Northern By-Pass, Nairobi
+                      Push Building, Thome, Northern Bypass, Nairobi
                     </span>
                     <span className="block text-[11px] text-slate-500 mt-0.5">
                       Headquarters &amp; Dispatch Fleet Hub
@@ -143,7 +143,7 @@ export const ContactSection: React.FC = () => {
                 {/* Visual Map Representation */}
                 <div className="absolute inset-0 bg-[#e5e3df] flex flex-col justify-between p-3 opacity-90">
                   <div className="flex justify-between items-center text-[10px] text-slate-500 font-mono">
-                    <span>Northern By-Pass / Thika Rd Interchange</span>
+                    <span>Push Building, Thome, Northern Bypass</span>
                     <span>Nairobi, Kenya</span>
                   </div>
                   {/* Map Roads Graphic */}
@@ -180,7 +180,7 @@ export const ContactSection: React.FC = () => {
                   Inquiry Submitted Successfully!
                 </h4>
                 <p className="text-xs text-emerald-800 max-w-md mx-auto">
-                  Thank you, {formData.firstName}. Our tour consultation team at our Northern By-Pass office is reviewing your itinerary requirements.
+                  Thank you, {formData.firstName}. Our tour consultation team at our Push Building, Thome, Northern Bypass office is reviewing your itinerary requirements.
                 </p>
                 <div className="text-xs font-mono font-bold text-[#801416] bg-white px-4 py-2 rounded-lg inline-block shadow-xs border border-emerald-200">
                   Reference: {referenceCode}

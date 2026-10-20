@@ -1,36 +1,39 @@
 import { TourPackage, Destination, BigFiveAnimal, FAQItem, TravelService, GalleryItem } from '../types/travel';
 
-export const HERO_IMAGE = '/src/assets/images/hero_east_africa_safari_1792408898976.jpg';
-export const KENYA_IMAGE = '/src/assets/images/safari_kenya_landcruiser_1792408899417.jpg';
-export const TANZANIA_IMAGE = '/src/assets/images/safari_tanzania_cheetah_1792408900022.jpg';
-export const RWANDA_IMAGE = '/src/assets/images/safari_rwanda_gorilla_1792408899583.jpg';
-export const ELEPHANTS_IMAGE = '/src/assets/images/safari_elephants_herd_1792408900303.jpg';
-export const HQ_BUILDING_IMAGE = '/src/assets/images/push_world_hq_building_1792409720815.jpg';
-export const LUXURY_RESORT_IMAGE = '/src/assets/images/luxury_safari_resort_hotel_1792409720916.jpg';
-export const BEACH_RESORT_IMAGE = '/src/assets/images/tropical_diani_beach_resort_1792409721534.jpg';
-export const FLIGHT_TRAVEL_IMAGE = '/src/assets/images/corporate_flight_travel_luxury_1792409721772.jpg';
-export const TWO_LIONS_BANNER = '/src/assets/images/dest_two_male_lions_banner_1792410470858.jpg';
-export const HELLS_GATE_IMAGE = '/src/assets/images/dest_hells_gate_cycling_1792410472229.jpg';
-export const OLPEJETA_IMAGE = '/src/assets/images/dest_olpejeta_rhino_horn_1792410472237.jpg';
-export const LEWA_IMAGE = '/src/assets/images/dest_reticulated_giraffes_1792410472378.jpg';
+export const HERO_IMAGE = '/images/hero_east_africa_safari_1792408898976.jpg';
+export const KENYA_IMAGE = '/images/safari_kenya_landcruiser_1792408899417.jpg';
+export const TANZANIA_IMAGE = '/images/safari_tanzania_cheetah_1792408900022.jpg';
+export const RWANDA_IMAGE = '/images/safari_rwanda_gorilla_1792408899583.jpg';
+export const ELEPHANTS_IMAGE = '/images/safari_elephants_herd_1792408900303.jpg';
+export const HQ_BUILDING_IMAGE = '/images/push_world_hq_building_1792409720815.jpg';
+export const LUXURY_RESORT_IMAGE = '/images/luxury_safari_resort_hotel_1792409720916.jpg';
+export const BEACH_RESORT_IMAGE = '/images/tropical_diani_beach_resort_1792409721534.jpg';
+export const FLIGHT_TRAVEL_IMAGE = '/images/corporate_flight_travel_luxury_1792409721772.jpg';
+export const TWO_LIONS_BANNER = '/images/dest_two_male_lions_banner_1792410470858.jpg';
+export const HELLS_GATE_IMAGE = '/images/dest_hells_gate_cycling_1792410472229.jpg';
+export const OLPEJETA_IMAGE = '/images/dest_olpejeta_rhino_horn_1792410472237.jpg';
+export const LEWA_IMAGE = '/images/dest_reticulated_giraffes_1792410472378.jpg';
 
 // Newly Uploaded Gallery Images
-export const GALLERY_ELEPHANTS_DUST = '/src/assets/images/gallery_elephant_mother_calf_1792411022869.jpg';
-export const GALLERY_ZEBRA_GREEN = '/src/assets/images/gallery_zebra_portrait_green_1792411023701.jpg';
-export const GALLERY_ZEBRAS_GOLDEN = '/src/assets/images/gallery_zebras_herd_golden_grass_1792411023300.jpg';
-export const GALLERY_RHINO_OXPECKERS = '/src/assets/images/gallery_white_rhino_oxpeckers_1792411040565.jpg';
-export const GALLERY_GAZELLE_SUNRISE = '/src/assets/images/gallery_thomsons_gazelle_golden_hour_1792411040835.jpg';
-export const GALLERY_CHEETAH_TREE = '/src/assets/images/gallery_cheetah_in_acacia_tree_1792411041895.jpg';
+export const GALLERY_ELEPHANTS_DUST = '/images/gallery_elephant_mother_calf_1792411022869.jpg';
+export const GALLERY_ZEBRA_GREEN = '/images/gallery_zebra_portrait_green_1792411023701.jpg';
+export const GALLERY_ZEBRAS_GOLDEN = '/images/gallery_zebras_herd_golden_grass_1792411023300.jpg';
+export const GALLERY_RHINO_OXPECKERS = '/images/gallery_white_rhino_oxpeckers_1792411040565.jpg';
+export const GALLERY_GAZELLE_SUNRISE = '/images/gallery_thomsons_gazelle_golden_hour_1792411040835.jpg';
+export const GALLERY_CHEETAH_TREE = '/images/gallery_cheetah_in_acacia_tree_1792411041895.jpg';
 
-export const LIONESS_HERO_IMAGE = '/src/assets/images/hero_lioness_golden_sunlight_1792411418879.jpg';
-export const TOURS_WELCOME_RHINO_IMAGE = '/src/assets/images/tours_welcome_rhino_1792411995498.jpg';
-export const TOURS_WELCOME_ELEPHANT_IMAGE = '/src/assets/images/tours_welcome_elephant_savanna_1792411669198.jpg';
+export const LIONESS_HERO_IMAGE = '/images/hero_lioness_golden_sunlight_1792411418879.jpg';
+export const TOURS_WELCOME_RHINO_IMAGE = '/images/tours_welcome_rhino_1792411995498.jpg';
+export const TOURS_WELCOME_ELEPHANT_IMAGE = '/images/tours_welcome_elephant_savanna_1792411669198.jpg';
 
 // Newly Uploaded Hero Rotating Slides
-export const HERO_ELEPHANT_HERD = '/src/assets/images/hero_elephant_herd_1792412419393.jpg';
-export const HERO_ROARING_LIONESS = '/src/assets/images/hero_roaring_lioness_1792412436415.jpg';
-export const HERO_TWO_LIONESSES = '/src/assets/images/hero_two_lionesses_1792412455797.jpg';
-export const HERO_RIFT_GORGE = '/src/assets/images/hero_rift_gorge_1792412471428.jpg';
+export const HERO_ELEPHANT_HERD = '/images/hero_elephant_herd_1792412419393.jpg';
+export const HERO_ROARING_LIONESS = '/images/hero_roaring_lioness_1792412436415.jpg';
+export const HERO_TWO_LIONESSES = '/images/hero_two_lionesses_1792412455797.jpg';
+export const HERO_RIFT_GORGE = '/images/hero_rift_gorge_1792412471428.jpg';
+
+// Official Push World Travel Logo Image (transparent background, no black box)
+export const PUSH_WORLD_LOGO_IMAGE = '/images/push_world_logo_transparent.png';
 
 export const COMPANY_INFO = {
   name: 'Push World Travel Ltd',
@@ -50,7 +53,7 @@ export const COMPANY_INFO = {
   offices: [
     {
       country: 'KENYA',
-      address: 'Northern By-Pass, Nairobi',
+      address: 'Push Building, Thome, Northern Bypass, Nairobi',
       isHeadquarters: true,
       phone: '0725 356 926',
     },
@@ -956,7 +959,7 @@ export const FAQS: FAQItem[] = [
   {
     id: 'faq-3',
     question: 'How do I choose a good travel agency in East Africa?',
-    answer: 'Look for an established, licensed tour operator with deep local roots, active physical offices (such as our corporate headquarters on Northern By-Pass, Nairobi, Kenya), 100% transparent itinerary planning, verified customer reviews on TripAdvisor, and seasoned, certified tour guides.',
+    answer: 'Look for an established, licensed tour operator with deep local roots, active physical offices (such as our corporate headquarters at Push Building, Thome, Northern Bypass, Nairobi, Kenya), 100% transparent itinerary planning, verified customer reviews on TripAdvisor, and seasoned, certified tour guides.',
   },
   {
     id: 'faq-4',

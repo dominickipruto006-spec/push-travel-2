@@ -14,7 +14,7 @@ export const FloatingQuoteWidget: React.FC<FloatingQuoteWidgetProps> = ({
   const [chatHistory, setChatHistory] = useState([
     {
       sender: 'agent',
-      text: 'Jambo! 👋 Welcome to Push World Travel. How can our team on Northern By-Pass, Nairobi assist your travel plans today? You can also reach us directly via Call & WhatsApp at 0725 356 926.',
+      text: 'Jambo! 👋 Welcome to Push World Travel. How can our team at Push Building, Thome, Northern Bypass, Nairobi assist your travel plans today? You can also reach us directly via Call & WhatsApp at 0725 356 926.',
       time: 'Just now',
     },
   ]);

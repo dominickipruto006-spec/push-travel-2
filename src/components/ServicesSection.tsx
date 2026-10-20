@@ -125,7 +125,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onInquireServi
               Need a tailored arrangement or dedicated travel account manager?
             </h4>
             <p className="text-xs sm:text-sm text-blue-100 mt-1 max-w-xl">
-              From diplomatic delegations to executive team retreats, our Northern By-Pass headquarters coordinates all logistics with discretion.
+              From diplomatic delegations to executive team retreats, our Push Building, Thome, Northern Bypass headquarters coordinates all logistics with discretion.
             </p>
           </div>
           <button

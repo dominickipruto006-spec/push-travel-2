@@ -3,6 +3,8 @@ import { Phone, Mail, MapPin } from 'lucide-react';
 import { TOP_FOOTER_DESTINATIONS, LANGUAGES } from '../data/travelData';
 import { SupportedLanguage } from '../types/travel';
 import { TRANSLATIONS } from '../data/translations';
+import { BrandLogo } from './BrandLogo';
+import { CountryFlag } from './CountryFlag';
 
 interface FooterProps {
   currentLang: SupportedLanguage;
@@ -24,8 +26,23 @@ export const Footer: React.FC<FooterProps> = ({
   return (
     <footer className="bg-[#7f1315] text-white pt-10 pb-8 transition-colors border-t-4 border-[#ff7700]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main Columns - Selected top logo line removed per user request */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 text-sm">
+        {/* Official Brand Logo Row - Centered on Mobile */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-8 mb-8 border-b border-white/15 text-center sm:text-left">
+          <div className="bg-white px-4 py-2 rounded-2xl shadow-sm inline-flex items-center justify-center">
+            <BrandLogo size="footer" />
+          </div>
+          <div className="text-center sm:text-right">
+            <span className="text-amber-300 font-bold text-sm tracking-wide block font-serif italic">
+              "Your World. Our Journey."
+            </span>
+            <span className="text-xs text-white/80 block mt-0.5">
+              Push Building, Thome, Northern Bypass, Nairobi, Kenya · Call / WhatsApp: 0725 356 926
+            </span>
+          </div>
+        </div>
+
+        {/* Main Columns - Centered on Mobile, Left-aligned on Desktop */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 text-sm text-center sm:text-left">
           {/* Column 1: Top Destinations */}
           <div>
             <h4 className="font-bold text-white text-base mb-4 tracking-wide font-['Outfit',sans-serif]">
@@ -36,7 +53,7 @@ export const Footer: React.FC<FooterProps> = ({
                 <li key={dest}>
                   <button
                     onClick={() => onNavigate('destinations')}
-                    className="hover:text-amber-300 transition-colors text-left cursor-pointer"
+                    className="hover:text-amber-300 transition-colors cursor-pointer"
                   >
                     {dest}
                   </button>
@@ -54,7 +71,7 @@ export const Footer: React.FC<FooterProps> = ({
               <li>
                 <button
                   onClick={() => onNavigate('about')}
-                  className="hover:text-amber-300 transition-colors text-left cursor-pointer"
+                  className="hover:text-amber-300 transition-colors cursor-pointer"
                 >
                   About Us
                 </button>
@@ -62,7 +79,7 @@ export const Footer: React.FC<FooterProps> = ({
               <li>
                 <button
                   onClick={() => onNavigate('tours')}
-                  className="hover:text-amber-300 transition-colors text-left cursor-pointer"
+                  className="hover:text-amber-300 transition-colors cursor-pointer"
                 >
                   Safari Packages
                 </button>
@@ -70,7 +87,7 @@ export const Footer: React.FC<FooterProps> = ({
               <li>
                 <button
                   onClick={() => onNavigate('services')}
-                  className="hover:text-amber-300 transition-colors text-left cursor-pointer"
+                  className="hover:text-amber-300 transition-colors cursor-pointer"
                 >
                   Our Services
                 </button>
@@ -78,7 +95,7 @@ export const Footer: React.FC<FooterProps> = ({
               <li>
                 <button
                   onClick={() => onNavigate('contact')}
-                  className="hover:text-amber-300 transition-colors text-left cursor-pointer"
+                  className="hover:text-amber-300 transition-colors cursor-pointer"
                 >
                   Contact Us
                 </button>
@@ -86,42 +103,54 @@ export const Footer: React.FC<FooterProps> = ({
               <li>
                 <button
                   onClick={() => onOpenPolicyModal('Terms and Conditions')}
-                  className="hover:text-amber-300 transition-colors text-left cursor-pointer"
+                  className="hover:text-amber-300 transition-colors cursor-pointer"
                 >
-                  Terms &amp; Policies
+                  Terms &amp; Conditions
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onOpenPolicyModal('Privacy Policy')}
+                  className="hover:text-amber-300 transition-colors cursor-pointer"
+                >
+                  Privacy Policy
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Column 3: Contact Us */}
+          {/* Column 3: Contact & Real Social Media Icons */}
           <div>
             <h4 className="font-bold text-white text-base mb-4 tracking-wide font-['Outfit',sans-serif]">
-              Contact Us
+              Get in Touch
             </h4>
-            <div className="space-y-3 text-white/90 text-xs sm:text-[13px]">
-              <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-amber-300 shrink-0" />
+            <div className="space-y-2.5 text-white/85 text-xs sm:text-[13px]">
+              <div className="flex items-center justify-center sm:justify-start gap-2">
+                <Phone className="w-4 h-4 text-white shrink-0" />
                 <a
                   href="tel:+254725356926"
-                  className="hover:text-amber-300 transition-colors font-semibold"
+                  className="hover:text-amber-300 font-semibold"
                 >
                   0725 356 926
                 </a>
               </div>
-
-              <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-amber-300 shrink-0" />
+              <div className="flex items-center justify-center sm:justify-start gap-2">
+                <Mail className="w-4 h-4 text-white shrink-0" />
                 <a
                   href="mailto:pushworldtravel@gmail.com"
-                  className="hover:text-amber-300 transition-colors font-semibold"
+                  className="hover:text-amber-300 font-semibold"
                 >
                   pushworldtravel@gmail.com
                 </a>
               </div>
+            </div>
 
-              {/* Real Updated Modern Social Media SVG Icons */}
-              <div className="pt-2 flex items-center gap-2.5">
+            {/* Real Updated Social Media Icons */}
+            <div className="mt-5">
+              <span className="text-xs font-bold uppercase tracking-wider text-amber-300 block mb-2">
+                Follow Push World
+              </span>
+              <div className="flex items-center justify-center sm:justify-start gap-2.5">
                 {/* Facebook */}
                 <a
                   href="https://facebook.com"
@@ -141,9 +170,9 @@ export const Footer: React.FC<FooterProps> = ({
                   target="_blank"
                   rel="noreferrer"
                   className="w-8 h-8 rounded-full bg-white/10 hover:bg-white hover:text-black text-white flex items-center justify-center transition-all duration-200"
-                  aria-label="X"
+                  aria-label="X (Twitter)"
                 >
-                  <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                   </svg>
                 </a>
@@ -199,11 +228,11 @@ export const Footer: React.FC<FooterProps> = ({
               <span className="font-black tracking-wider text-amber-300 block">
                 KENYA
               </span>
-              <div className="flex items-start gap-2">
+              <div className="flex items-start justify-center sm:justify-start gap-2">
                 <MapPin className="w-4 h-4 text-white shrink-0 mt-0.5" />
-                <span>Northern By-Pass, Nairobi</span>
+                <span>Push Building, Thome, Northern Bypass, Nairobi</span>
               </div>
-              <span className="text-[11px] text-white/70 block mt-1 ml-6">
+              <span className="text-[11px] text-white/70 block mt-1 sm:ml-6">
                 Headquarters &amp; Dispatch Fleet Hub
               </span>
             </div>
@@ -213,24 +242,25 @@ export const Footer: React.FC<FooterProps> = ({
         {/* Thin Divider */}
         <div className="w-full h-[1px] bg-white/15 mt-8 mb-5" />
 
-        {/* Bottom Bar: Copyright & Clean Language Flags */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/70">
+        {/* Bottom Bar: Copyright & Clean Language Flags - Centered on Mobile */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/70 text-center sm:text-left">
           <div>
             © {new Date().getFullYear()} Push World Travel Ltd. {t.allRightsReserved}
           </div>
 
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-wrap items-center justify-center gap-3">
             {LANGUAGES.map((lang) => (
               <button
                 key={lang.code}
                 onClick={() => onLanguageChange(lang.code as SupportedLanguage)}
-                className={`flex items-center gap-1 px-1.5 py-0.5 rounded transition-colors cursor-pointer ${
+                className={`flex items-center gap-1.5 px-2 py-1 rounded transition-colors cursor-pointer ${
                   currentLang === lang.code
                     ? 'text-amber-300 font-bold bg-white/15'
-                    : 'text-white/75 hover:text-white'
+                    : 'text-white/75 hover:text-white hover:bg-white/10'
                 }`}
+                title={lang.name}
               >
-                <span>{lang.flag}</span>
+                <CountryFlag code={lang.code} className="w-4.5 h-3" />
                 <span className="text-[11px]">{lang.name}</span>
               </button>
             ))}
