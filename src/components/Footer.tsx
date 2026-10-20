@@ -31,12 +31,15 @@ export const Footer: React.FC<FooterProps> = ({
           <div className="bg-white px-4 py-2 rounded-2xl shadow-sm inline-flex items-center justify-center">
             <BrandLogo size="footer" />
           </div>
-          <div className="text-center sm:text-right">
+          <div className="text-center sm:text-right flex flex-col items-center sm:items-end">
             <span className="text-amber-300 font-bold text-sm tracking-wide block font-serif italic">
               "Your World. Our Journey."
             </span>
+            <span className="text-xs text-white/90 font-medium block mt-1">
+              Push Building, Thome
+            </span>
             <span className="text-xs text-white/80 block mt-0.5">
-              Push Building, Thome, Northern Bypass, Nairobi, Kenya · Call / WhatsApp: 0725 356 926
+              Northern Bypass, Nairobi, Kenya
             </span>
           </div>
         </div>

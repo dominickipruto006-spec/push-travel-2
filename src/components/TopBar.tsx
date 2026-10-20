@@ -165,11 +165,12 @@ export const TopBar: React.FC<TopBarProps> = ({
               {t.requestQuote}
             </button>
 
+
             {/* Language Selector Dropdown */}
             <div className="relative">
               <button
                 onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
-                className="flex items-center gap-2 px-2.5 py-1.5 text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200/80 rounded-md transition-colors cursor-pointer"
+                className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200/80 rounded-md transition-colors cursor-pointer"
                 aria-expanded={isLangDropdownOpen}
                 aria-label="Select Language"
               >
