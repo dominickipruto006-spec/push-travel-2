@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Phone, ChevronDown, Menu, X, Calendar, MapPin, ArrowRight } from 'lucide-react';
+import { Phone, ChevronDown, Menu, X, MapPin, ArrowRight } from 'lucide-react';
 import { BrandLogo } from './BrandLogo';
 import { CountryFlag } from './CountryFlag';
 import { COMPANY_INFO, LANGUAGES } from '../data/travelData';
@@ -156,14 +156,6 @@ export const TopBar: React.FC<TopBarProps> = ({
 
           {/* Right Action Zone */}
           <div className="flex items-center gap-3 sm:gap-4 shrink-0">
-            {/* Primary Action Button */}
-            <button
-              onClick={onRequestQuoteClick}
-              className="px-4 sm:px-5 py-2.5 text-xs sm:text-sm font-bold tracking-wide uppercase text-white bg-[#801416] hover:bg-[#991b1b] rounded-md shadow-xs transition-all duration-200 active:scale-95 whitespace-nowrap cursor-pointer flex items-center gap-1.5"
-            >
-              <Calendar className="w-4 h-4 hidden sm:inline" />
-              {t.requestQuote}
-            </button>
 
 
             {/* Language Selector Dropdown */}
