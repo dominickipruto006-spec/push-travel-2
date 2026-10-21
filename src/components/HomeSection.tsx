@@ -260,7 +260,7 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
               </a>
               <button
                 onClick={() => onRequestQuoteClick()}
-                className="px-5 py-3 text-xs font-bold uppercase tracking-wider text-white bg-[#801416] hover:bg-[#991b1b] rounded-lg shadow-sm transition-colors cursor-pointer"
+                className="px-5 py-3 text-xs font-bold uppercase tracking-wider text-white bg-[#0a2265] hover:bg-[#071a4d] border border-blue-400/40 rounded-lg shadow-md transition-colors cursor-pointer"
               >
                 Request Free Quote
               </button>

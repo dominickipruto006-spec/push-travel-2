@@ -48,7 +48,7 @@ export const FloatingQuoteWidget: React.FC<FloatingQuoteWidgetProps> = ({
       <aside aria-label="Quick safari consultation" className="fixed bottom-5 right-5 z-40 flex items-center shadow-2xl rounded-full">
         <button
           onClick={onRequestQuoteClick}
-          className="bg-[#801416] hover:bg-[#991b1b] text-white px-4 py-2.5 text-xs font-bold rounded-l-full shadow-md tracking-wide flex items-center gap-1.5 transition-colors cursor-pointer select-none"
+          className="bg-[#0a2265] hover:bg-[#07194a] text-white px-4 py-2.5 text-xs font-bold rounded-l-full shadow-md tracking-wide flex items-center gap-1.5 transition-colors cursor-pointer select-none"
         >
           <Calendar className="w-3.5 h-3.5 text-amber-300" />
           <span>Request A Quote</span>
@@ -56,7 +56,7 @@ export const FloatingQuoteWidget: React.FC<FloatingQuoteWidgetProps> = ({
 
         <button
           onClick={() => setIsChatOpen(!isChatOpen)}
-          className="bg-[#801416] hover:bg-[#6b1012] border-l border-white/20 text-white p-2.5 rounded-r-full shadow-md transition-colors cursor-pointer flex items-center justify-center"
+          className="bg-[#0a2265] hover:bg-[#07194a] border-l border-white/20 text-white p-2.5 rounded-r-full shadow-md transition-colors cursor-pointer flex items-center justify-center"
           aria-label="Open 24/7 Safari Chat"
         >
           <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">

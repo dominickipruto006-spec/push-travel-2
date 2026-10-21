@@ -143,7 +143,7 @@ export const PackagesSection: React.FC<PackagesSectionProps> = ({
                     </button>
                     <button
                       onClick={() => onSelectPackageForQuote(pkg)}
-                      className="px-4 py-2 text-xs font-bold text-white bg-[#801416] hover:bg-[#991b1b] rounded-md shadow-xs transition-all cursor-pointer"
+                      className="px-4 py-2 text-xs font-bold text-white bg-[#0a2265] hover:bg-[#07194a] rounded-md shadow-xs transition-all cursor-pointer"
                     >
                       Book Tour
                     </button>
@@ -264,7 +264,7 @@ export const PackagesSection: React.FC<PackagesSectionProps> = ({
                     setActivePackageModal(null);
                     onSelectPackageForQuote(pkg);
                   }}
-                  className="px-6 py-2.5 text-xs sm:text-sm font-bold text-white bg-[#801416] hover:bg-[#991b1b] rounded-lg shadow-sm cursor-pointer"
+                  className="px-6 py-2.5 text-xs sm:text-sm font-bold text-white bg-[#0a2265] hover:bg-[#07194a] rounded-lg shadow-sm cursor-pointer"
                 >
                   Request Detailed Itinerary &amp; Quote
                 </button>

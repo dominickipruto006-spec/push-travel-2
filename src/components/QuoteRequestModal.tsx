@@ -95,7 +95,7 @@ export const QuoteRequestModal: React.FC<QuoteRequestModalProps> = ({
             <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl text-left max-w-md mx-auto space-y-2 text-xs">
               <div className="flex justify-between">
                 <span className="text-slate-500">Booking Reference:</span>
-                <span className="font-mono font-bold text-[#801416] text-sm">
+                <span className="font-mono font-bold text-[#0a2265] text-sm">
                   {referenceId}
                 </span>
               </div>
@@ -120,7 +120,7 @@ export const QuoteRequestModal: React.FC<QuoteRequestModalProps> = ({
             <div className="pt-2 flex justify-center gap-3">
               <button
                 onClick={handleReset}
-                className="px-6 py-2.5 text-xs font-bold text-white bg-[#801416] hover:bg-[#991b1b] rounded-lg cursor-pointer"
+                className="px-6 py-2.5 text-xs font-bold text-white bg-[#0a2265] hover:bg-[#07194a] rounded-lg cursor-pointer"
               >
                 Done
               </button>
@@ -144,7 +144,7 @@ export const QuoteRequestModal: React.FC<QuoteRequestModalProps> = ({
                     value={formData.fullName}
                     onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                     placeholder="e.g. John Doe"
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-900 focus:ring-1 focus:ring-[#801416] focus:outline-none"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-900 focus:ring-1 focus:ring-[#0a2265] focus:outline-none"
                   />
                 </div>
                 <div>
@@ -157,7 +157,7 @@ export const QuoteRequestModal: React.FC<QuoteRequestModalProps> = ({
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="john@example.com"
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-900 focus:ring-1 focus:ring-[#801416] focus:outline-none"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-900 focus:ring-1 focus:ring-[#0a2265] focus:outline-none"
                   />
                 </div>
                 <div>
@@ -170,7 +170,7 @@ export const QuoteRequestModal: React.FC<QuoteRequestModalProps> = ({
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="+1 555 0192 / +254..."
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-900 focus:ring-1 focus:ring-[#801416] focus:outline-none"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-900 focus:ring-1 focus:ring-[#0a2265] focus:outline-none"
                   />
                 </div>
                 <div>
@@ -182,7 +182,7 @@ export const QuoteRequestModal: React.FC<QuoteRequestModalProps> = ({
                     value={formData.countryOfResidence}
                     onChange={(e) => setFormData({ ...formData, countryOfResidence: e.target.value })}
                     placeholder="United States, UK, Germany..."
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-900 focus:ring-1 focus:ring-[#801416] focus:outline-none"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-900 focus:ring-1 focus:ring-[#0a2265] focus:outline-none"
                   />
                 </div>
               </div>
@@ -201,7 +201,7 @@ export const QuoteRequestModal: React.FC<QuoteRequestModalProps> = ({
                   <select
                     value={formData.selectedDestination}
                     onChange={(e) => setFormData({ ...formData, selectedDestination: e.target.value })}
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-900 focus:ring-1 focus:ring-[#801416] focus:outline-none cursor-pointer"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-900 focus:ring-1 focus:ring-[#0a2265] focus:outline-none cursor-pointer"
                   >
                     <option value="Maasai Mara National Reserve, Kenya">Maasai Mara National Reserve, Kenya</option>
                     <option value="Serengeti National Park, Tanzania">Serengeti National Park, Tanzania</option>
@@ -222,7 +222,7 @@ export const QuoteRequestModal: React.FC<QuoteRequestModalProps> = ({
                     type="date"
                     value={formData.travelDate}
                     onChange={(e) => setFormData({ ...formData, travelDate: e.target.value })}
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-900 focus:ring-1 focus:ring-[#801416] focus:outline-none cursor-pointer"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-900 focus:ring-1 focus:ring-[#0a2265] focus:outline-none cursor-pointer"
                   />
                 </div>
 
@@ -275,7 +275,7 @@ export const QuoteRequestModal: React.FC<QuoteRequestModalProps> = ({
                   <select
                     value={formData.tierPreference}
                     onChange={(e) => setFormData({ ...formData, tierPreference: e.target.value })}
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-900 focus:ring-1 focus:ring-[#801416] focus:outline-none cursor-pointer"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-900 focus:ring-1 focus:ring-[#0a2265] focus:outline-none cursor-pointer"
                   >
                     <option value="Comfort & Mid-Range">Comfort &amp; Mid-Range</option>
                     <option value="Luxury Boutique & 5-Star">Luxury Boutique &amp; 5-Star</option>
@@ -296,7 +296,7 @@ export const QuoteRequestModal: React.FC<QuoteRequestModalProps> = ({
                 value={formData.specialRequirements}
                 onChange={(e) => setFormData({ ...formData, specialRequirements: e.target.value })}
                 placeholder="e.g. Hot air balloon safari, family room interconnecting, vegetarian, photography focus..."
-                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-900 focus:ring-1 focus:ring-[#801416] focus:outline-none resize-none"
+                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-900 focus:ring-1 focus:ring-[#0a2265] focus:outline-none resize-none"
               />
             </div>
 
@@ -308,7 +308,7 @@ export const QuoteRequestModal: React.FC<QuoteRequestModalProps> = ({
               </span>
               <button
                 type="submit"
-                className="px-6 py-2.5 text-xs sm:text-sm font-bold text-white bg-[#801416] hover:bg-[#991b1b] rounded-lg shadow-sm transition-all flex items-center gap-2 cursor-pointer active:scale-98"
+                className="px-6 py-2.5 text-xs sm:text-sm font-bold text-white bg-[#0a2265] hover:bg-[#07194a] rounded-lg shadow-sm transition-all flex items-center gap-2 cursor-pointer active:scale-98"
               >
                 <Send className="w-3.5 h-3.5" />
                 Submit Quote Request

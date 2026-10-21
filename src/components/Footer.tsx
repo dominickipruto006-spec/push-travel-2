@@ -24,7 +24,7 @@ export const Footer: React.FC<FooterProps> = ({
   const t = TRANSLATIONS[currentLang];
 
   return (
-    <footer className="bg-[#7f1315] text-white pt-10 pb-8 transition-colors border-t-4 border-[#ff7700]">
+    <footer className="bg-[#0a192f] text-white pt-10 pb-8 transition-colors border-t-4 border-[#ff7700]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Official Brand Logo Row - Centered on Mobile */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-8 mb-8 border-b border-white/15 text-center sm:text-left">
@@ -72,6 +72,15 @@ export const Footer: React.FC<FooterProps> = ({
               Quick Links
             </h4>
             <ul className="space-y-2 text-white/85 text-xs sm:text-[13px]">
+              <li>
+                <button
+                  onClick={() => onNavigate('eta')}
+                  className="hover:text-amber-300 transition-colors cursor-pointer text-amber-300 font-bold flex items-center gap-1.5"
+                >
+                  <span>Kenya eTA &amp; Insurance</span>
+                  <span className="text-[10px] bg-amber-400/20 text-amber-300 px-1.5 py-0.5 rounded uppercase font-bold">USD 157.50</span>
+                </button>
+              </li>
               <li>
                 <button
                   onClick={() => onNavigate('about')}
@@ -141,10 +150,10 @@ export const Footer: React.FC<FooterProps> = ({
               <div className="flex items-center justify-center sm:justify-start gap-2">
                 <Mail className="w-4 h-4 text-white shrink-0" />
                 <a
-                  href="mailto:pushworldtravel@gmail.com"
+                  href="mailto:pushworldtravelltd@gmail.com"
                   className="hover:text-amber-300 font-semibold"
                 >
-                  pushworldtravel@gmail.com
+                  pushworldtravelltd@gmail.com
                 </a>
               </div>
             </div>

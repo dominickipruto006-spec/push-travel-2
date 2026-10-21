@@ -72,7 +72,7 @@ export const ToursSection: React.FC<ToursSectionProps> = ({
         'anzania offers a boundless wilderness expanse that captures the imagination. Descend 600 meters into the Ngorongoro Crater floor—an untouched wildlife amphitheater teeming with black rhinos and massive lion prides—before following thousands of wildebeest and zebras across the golden Serengeti horizon.',
       bestSeasons: 'December to March (Ndutu Calving) & June to October (Dry Season Predator Action)',
       topWildlife: ['Black Rhinos', 'Serengeti Lions', 'Tree Leopards', 'Wildebeest Herds'],
-      packageIds: ['serengeti-ngorongoro-5d', 'kenya-tanzania-combo-8d'],
+      packageIds: ['serengeti-ngorongoro-5d', 'kenya-tanzania-combo-8d', 'zanzibar-beach-escape-5d'],
     },
     {
       id: 'gorilla-trekking',
@@ -90,17 +90,17 @@ export const ToursSection: React.FC<ToursSectionProps> = ({
     },
     {
       id: 'coastal-bush-beach',
-      name: 'Coastal Bush-to-Beach Holidays',
-      country: 'Kenya',
+      name: 'Coastal Bush-to-Beach & Zanzibar Holidays',
+      country: 'Kenya & Tanzania',
       tag: 'Bush to Beach Harmony',
       summary:
-        'The ideal balance: exciting savannah game drives followed by barefoot luxury along the turquoise Indian Ocean on Diani Beach.',
+        'The ideal balance: exciting savannah game drives followed by barefoot luxury along the turquoise Indian Ocean on Diani Beach and Zanzibar Island.',
       dropCapLetter: 'C',
       welcomeNote:
-        'oastal East Africa provides the quintessential finale to an adrenaline-charged wildlife safari. After dust-filled game drives searching for Amboseli tuskers and Tsavo lions, sink your feet into the powder-soft white sands of Diani Beach, sailed by traditional dhows across shimmering turquoise waves.',
+        'oastal East Africa provides the quintessential finale to an adrenaline-charged wildlife safari. After dust-filled game drives searching for Amboseli tuskers and Tsavo lions, sink your feet into the powder-soft white sands of Diani Beach or the spice island of Zanzibar, sailed by traditional dhows across shimmering turquoise waves.',
       bestSeasons: 'October to April (Warm tropical waters, calm seas & bright sun)',
       topWildlife: ['Dolphins', 'Sea Turtles', 'Coral Reef Fish', 'Amboseli Elephants'],
-      packageIds: ['kenya-beach-bush-7d'],
+      packageIds: ['kenya-beach-bush-7d', 'zanzibar-beach-escape-5d'],
     },
     {
       id: 'luxury-cross-border',
@@ -172,7 +172,7 @@ export const ToursSection: React.FC<ToursSectionProps> = ({
             <div className="lg:col-span-7 p-6 sm:p-8 lg:p-10 flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs font-extrabold uppercase tracking-widest text-[#801416] flex items-center gap-1.5">
+                  <span className="text-xs font-extrabold uppercase tracking-widest text-[#0a2265] flex items-center gap-1.5">
                     <Compass className="w-4 h-4 text-[#ea580c]" />
                     <span>Jambo &amp; Karibu to East Africa</span>
                   </span>
@@ -434,7 +434,7 @@ export const ToursSection: React.FC<ToursSectionProps> = ({
 
                                   <button
                                     onClick={() => onSelectPackageForQuote(pkg)}
-                                    className="px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-white bg-[#801416] hover:bg-[#991b1b] rounded-lg shadow-2xs transition-colors cursor-pointer"
+                                    className="px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-white bg-[#0a2265] hover:bg-[#07194a] rounded-lg shadow-2xs transition-colors cursor-pointer"
                                   >
                                     Inquire / Book
                                   </button>
@@ -519,7 +519,7 @@ export const ToursSection: React.FC<ToursSectionProps> = ({
                         <p className="text-xs text-slate-600 leading-relaxed mb-2">
                           {day.description}
                         </p>
-                        <div className="text-[11px] font-semibold text-[#801416] flex items-center gap-1">
+                        <div className="text-[11px] font-semibold text-[#0a2265] flex items-center gap-1">
                           <MapPin className="w-3 h-3" /> Accommodation: {day.accommodation}
                         </div>
                       </div>
@@ -577,7 +577,7 @@ export const ToursSection: React.FC<ToursSectionProps> = ({
                       setActivePackageModal(null);
                       onSelectPackageForQuote(pkg);
                     }}
-                    className="px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white bg-[#801416] hover:bg-[#991b1b] rounded-lg shadow-sm transition-colors cursor-pointer flex items-center gap-2"
+                    className="px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white bg-[#0a2265] hover:bg-[#07194a] rounded-lg shadow-sm transition-colors cursor-pointer flex items-center gap-2"
                   >
                     Request Custom Quote <ArrowRight className="w-3.5 h-3.5" />
                   </button>

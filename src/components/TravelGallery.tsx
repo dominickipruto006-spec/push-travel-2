@@ -5,6 +5,7 @@ import { INITIAL_GALLERY_ITEMS } from '../data/travelData';
 export const TravelGallery: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<'All' | 'Wildlife' | 'Coastal & Beach'>('All');
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
 
   const filteredItems = INITIAL_GALLERY_ITEMS.filter((item) => {
     if (activeCategory === 'All') return true;
@@ -109,10 +110,21 @@ export const TravelGallery: React.FC = () => {
           ))}
         </div>
 
-        {/* Full-Screen Minimalist Lightbox Viewer */}
+        {/* Full-Screen Minimalist Lightbox Viewer with Swipe & Keyboard Support */}
         {selectedImageIndex !== null && filteredItems[selectedImageIndex] && (
           <div
             onClick={() => setSelectedImageIndex(null)}
+            onTouchStart={(e) => setTouchStartX(e.touches[0].clientX)}
+            onTouchEnd={(e) => {
+              if (touchStartX === null) return;
+              const diff = touchStartX - e.changedTouches[0].clientX;
+              if (diff > 45) {
+                handleNext();
+              } else if (diff < -45) {
+                handlePrev();
+              }
+              setTouchStartX(null);
+            }}
             className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 animate-in fade-in"
           >
             {/* Close Button */}
@@ -127,35 +139,46 @@ export const TravelGallery: React.FC = () => {
             {/* Navigation Arrows */}
             <button
               onClick={handlePrev}
-              className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/10 hover:bg-white/25 text-white flex items-center justify-center transition-colors cursor-pointer"
+              className="absolute left-3 sm:left-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white/15 hover:bg-white/30 text-white flex items-center justify-center transition-colors cursor-pointer shadow-lg"
               aria-label="Previous image"
             >
-              <ChevronLeft className="w-7 h-7" />
+              <ChevronLeft className="w-6 h-6 sm:w-7 sm:h-7" />
             </button>
 
             <button
               onClick={handleNext}
-              className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/10 hover:bg-white/25 text-white flex items-center justify-center transition-colors cursor-pointer"
+              className="absolute right-3 sm:right-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white/15 hover:bg-white/30 text-white flex items-center justify-center transition-colors cursor-pointer shadow-lg"
               aria-label="Next image"
             >
-              <ChevronRight className="w-7 h-7" />
+              <ChevronRight className="w-6 h-6 sm:w-7 sm:h-7" />
             </button>
 
             {/* Full High-Resolution Image Container */}
             <div
               onClick={(e) => e.stopPropagation()}
-              className="relative max-w-5xl max-h-[85vh] flex flex-col items-center select-none"
+              className="relative max-w-5xl max-h-[88vh] flex flex-col items-center select-none"
             >
               <img
                 src={filteredItems[selectedImageIndex].imageUrl}
-                alt="Push World Travel Photography"
-                className="max-w-full max-h-[82vh] object-contain rounded-xl shadow-2xl"
+                alt={filteredItems[selectedImageIndex].title}
+                className="max-w-full max-h-[78vh] object-contain rounded-xl shadow-2xl transition-all duration-300"
                 referrerPolicy="no-referrer"
               />
-              {/* Minimal Counter */}
-              <span className="mt-3 text-xs tracking-widest uppercase text-white/60 font-medium">
-                {selectedImageIndex + 1} / {filteredItems.length}
-              </span>
+              {/* Photo Title & Minimal Counter */}
+              <div className="mt-3 text-center px-4">
+                <h3 className="text-white font-bold text-sm sm:text-base">
+                  {filteredItems[selectedImageIndex].title}
+                </h3>
+                <div className="flex items-center justify-center gap-2 mt-1">
+                  <span className="text-amber-300 text-xs font-semibold">
+                    {filteredItems[selectedImageIndex].location}
+                  </span>
+                  <span className="text-white/40 text-xs">•</span>
+                  <span className="text-white/60 text-xs tracking-wider uppercase font-medium">
+                    {selectedImageIndex + 1} / {filteredItems.length}
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         )}

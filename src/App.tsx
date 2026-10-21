@@ -12,6 +12,7 @@ import { DestinationsSection } from './components/DestinationsSection';
 import { TravelGallery } from './components/TravelGallery';
 import { AboutSection } from './components/AboutSection';
 import { ContactSection } from './components/ContactSection';
+import { KenyaEtaSection } from './components/KenyaEtaSection';
 import { Footer } from './components/Footer';
 import { QuoteRequestModal } from './components/QuoteRequestModal';
 import { FloatingQuoteWidget } from './components/FloatingQuoteWidget';
@@ -40,7 +41,9 @@ export default function App() {
     } else {
       setCurrentPage(pageId);
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (!destinationId) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   const handleOpenQuoteWithData = (data?: {
@@ -127,6 +130,13 @@ export default function App() {
         )}
 
         {currentPage === 'contact' && <ContactSection />}
+
+        {currentPage === 'eta' && (
+          <KenyaEtaSection
+            onNavigateHome={() => navigateToPage('home')}
+            onContactClick={() => navigateToPage('contact')}
+          />
+        )}
       </main>
 
       {/* 3. Footer with Northern By-Pass Location and No Tanzania Office */}

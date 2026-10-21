@@ -33,6 +33,7 @@ export const TopBar: React.FC<TopBarProps> = ({
     { id: 'services', label: t.services },
     { id: 'tours', label: t.tours },
     { id: 'destinations', label: t.destinations, hasDropdown: true },
+    { id: 'eta', label: 'Kenya eTA', isSpecial: true },
     { id: 'gallery', label: t.gallery },
     { id: 'about', label: t.aboutUs },
     { id: 'contact', label: t.contactUs },
@@ -47,6 +48,7 @@ export const TopBar: React.FC<TopBarProps> = ({
     { id: 'lake-nakuru', name: 'Lake Nakuru National Park', country: 'Kenya' },
     { id: 'serengeti', name: 'Serengeti National Park', country: 'Tanzania' },
     { id: 'ngorongoro', name: 'Ngorongoro Crater', country: 'Tanzania' },
+    { id: 'zanzibar', name: 'Zanzibar Island', country: 'Tanzania' },
     { id: 'volcanoes-np', name: 'Volcanoes National Park', country: 'Rwanda' },
   ];
 
@@ -143,13 +145,18 @@ export const TopBar: React.FC<TopBarProps> = ({
                 <button
                   key={item.id}
                   onClick={() => handleNavClick(item.id)}
-                  className={`transition-colors whitespace-nowrap cursor-pointer uppercase py-1 border-b-2 font-['Outfit',sans-serif] ${
+                  className={`transition-colors whitespace-nowrap cursor-pointer uppercase py-1 border-b-2 font-['Outfit',sans-serif] flex items-center gap-1.5 ${
                     isActive
                       ? 'text-[#ea580c] border-[#ea580c] font-extrabold'
                       : 'text-slate-700 hover:text-[#ea580c] border-transparent font-bold'
                   }`}
                 >
-                  {item.label}
+                  <span>{item.label}</span>
+                  {item.id === 'eta' && (
+                    <span className="text-[9px] bg-emerald-600 text-white font-bold px-1.5 py-0.5 rounded-full uppercase tracking-wider">
+                      Online
+                    </span>
+                  )}
                 </button>
               );
             })}
@@ -282,7 +289,7 @@ export const TopBar: React.FC<TopBarProps> = ({
               href="tel:+254725356926"
               className="flex items-center gap-2 text-xs font-semibold text-slate-700 px-3 py-2 bg-slate-50 rounded-lg"
             >
-              <Phone className="w-4 h-4 text-[#801416]" />
+              <Phone className="w-4 h-4 text-[#0a2265]" />
               <span>Call / WhatsApp: 0725 356 926</span>
             </a>
             <button
@@ -290,7 +297,7 @@ export const TopBar: React.FC<TopBarProps> = ({
                 setIsMobileMenuOpen(false);
                 onRequestQuoteClick();
               }}
-              className="w-full py-2.5 text-center text-xs font-bold uppercase tracking-wider text-white bg-[#801416] rounded-lg shadow-sm"
+              className="w-full py-2.5 text-center text-xs font-bold uppercase tracking-wider text-white bg-[#0a2265] hover:bg-[#07194a] rounded-lg shadow-sm"
             >
               {t.requestQuote}
             </button>

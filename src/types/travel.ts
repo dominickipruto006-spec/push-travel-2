@@ -56,6 +56,7 @@ export interface Destination {
   tagline: string;
   description: string;
   image: string;
+  images?: string[];
   bestTime: string;
   wildlife: string[];
   highlights: string[];

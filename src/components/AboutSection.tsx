@@ -80,14 +80,14 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
               <div className="p-3.5 bg-white rounded-xl border border-slate-200/90 shadow-2xs flex items-center gap-3">
-                <MapPin className="w-5 h-5 text-[#801416] shrink-0" />
+                <MapPin className="w-5 h-5 text-[#0a2265] shrink-0" />
                 <div>
                   <span className="block text-xs font-bold text-slate-900">Physical Office Hub</span>
                   <span className="text-[11px] text-slate-500">Push Building, Thome, Northern Bypass</span>
                 </div>
               </div>
               <div className="p-3.5 bg-white rounded-xl border border-slate-200/90 shadow-2xs flex items-center gap-3">
-                <Clock className="w-5 h-5 text-[#801416] shrink-0" />
+                <Clock className="w-5 h-5 text-[#0a2265] shrink-0" />
                 <div>
                   <span className="block text-xs font-bold text-slate-900">Dedicated Support</span>
                   <span className="text-[11px] text-slate-500">0725 356 926 (Call &amp; WhatsApp)</span>
@@ -104,7 +104,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
                 className="w-full h-80 object-cover"
               />
               <div className="p-5 bg-white">
-                <span className="text-xs font-bold text-[#801416] uppercase tracking-wider block">
+                <span className="text-xs font-bold text-[#0a2265] uppercase tracking-wider block">
                   Untamed East Africa
                 </span>
                 <p className="text-xs text-slate-600 mt-1">
@@ -228,7 +228,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
               {onContactClick && (
                 <button
                   onClick={onContactClick}
-                  className="px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white bg-[#801416] hover:bg-[#991b1b] rounded-lg shadow-xs transition-colors cursor-pointer"
+                  className="px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white bg-[#0a2265] hover:bg-[#07194a] rounded-lg shadow-xs transition-colors cursor-pointer"
                 >
                   Contact Our Team
                 </button>

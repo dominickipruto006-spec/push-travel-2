@@ -175,7 +175,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           <div className="mt-7 sm:mt-8 flex flex-wrap items-center justify-center sm:justify-start gap-3 sm:gap-4 mx-auto sm:mx-0">
             <button
               onClick={onRequestQuoteClick}
-              className="px-6 py-3 text-xs sm:text-sm font-bold uppercase tracking-wide text-white bg-[#801416] hover:bg-[#991b1b] rounded-lg shadow-lg hover:shadow-xl transition-all cursor-pointer active:scale-95 flex items-center gap-2"
+              className="px-6 py-3 text-xs sm:text-sm font-bold uppercase tracking-wide text-white bg-[#0a2265] hover:bg-[#081a4e] border border-blue-400/30 rounded-lg shadow-lg hover:shadow-xl transition-all cursor-pointer active:scale-95 flex items-center gap-2"
             >
               <span>Request A Quote</span>
               <ChevronRight className="w-4 h-4 text-amber-300" />

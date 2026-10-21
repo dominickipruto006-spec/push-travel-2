@@ -24,7 +24,7 @@ export const WhyChooseUs: React.FC = () => {
               className="p-8 bg-white rounded-xl border border-slate-200/90 shadow-sm hover:shadow-md transition-shadow relative flex flex-col justify-start"
             >
               {/* Paw Icon matching the screenshot */}
-              <div className="mb-5 text-[#801416]">
+              <div className="mb-5 text-[#0a2265]">
                 <svg
                   className="w-7 h-7 fill-[#ea580c]"
                   viewBox="0 0 24 24"

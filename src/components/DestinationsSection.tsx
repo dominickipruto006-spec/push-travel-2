@@ -7,6 +7,8 @@ import {
   Sparkles,
   ChevronDown,
   ChevronUp,
+  ChevronLeft,
+  ChevronRight,
   Filter,
   CheckCircle,
   Eye,
@@ -14,6 +16,144 @@ import {
 } from 'lucide-react';
 import { DESTINATIONS, BIG_FIVE, TWO_LIONS_BANNER } from '../data/travelData';
 import { Destination, BigFiveAnimal } from '../types/travel';
+
+const DestinationSwiper: React.FC<{
+  images: string[];
+  destName: string;
+  country: string;
+}> = ({ images, destName, country }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Auto-advance photos gently when multiple images are present
+  useEffect(() => {
+    if (images.length <= 1 || isPaused) return;
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 4500);
+    return () => clearInterval(interval);
+  }, [images.length, isPaused]);
+
+  const prevImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  };
+
+  const nextImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStartX(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX === null) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX - touchEndX;
+    if (diff > 40) {
+      setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+    } else if (diff < -40) {
+      setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+    }
+    setTouchStartX(null);
+  };
+
+  const getCaption = (name: string, idx: number): string | null => {
+    const lower = name.toLowerCase();
+    if (lower.includes('zanzibar')) {
+      return idx === 0
+        ? 'Aerial Turquoise Lagoon & Traditional Dhows'
+        : 'Tropical Sunset Beach & Kitesurfers';
+    }
+    if (lower.includes('nairobi')) {
+      return idx === 0
+        ? 'Plains Zebras Against Nairobi City Skyline'
+        : 'Endangered Black Rhino Savanna Sanctuary';
+    }
+    return null;
+  };
+
+  const photoCaption = getCaption(destName, currentIndex);
+
+  return (
+    <div
+      className="lg:col-span-5 relative rounded-xl overflow-hidden min-h-[280px] sm:min-h-[320px] bg-slate-900 shadow-xs select-none group/swiper"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      <img
+        src={images[currentIndex] || images[0]}
+        alt={`${destName} - View ${currentIndex + 1}`}
+        className="w-full h-full object-cover object-center transition-all duration-700 ease-out"
+        referrerPolicy="no-referrer"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/20 pointer-events-none" />
+
+      {images.length > 1 && (
+        <>
+          {/* Navigation Arrows */}
+          <button
+            onClick={prevImage}
+            className="absolute left-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 hover:bg-black/85 text-white flex items-center justify-center transition-all cursor-pointer shadow-md active:scale-95 z-20 hover:scale-110"
+            aria-label="Previous image"
+            title="Previous image"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <button
+            onClick={nextImage}
+            className="absolute right-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 hover:bg-black/85 text-white flex items-center justify-center transition-all cursor-pointer shadow-md active:scale-95 z-20 hover:scale-110"
+            aria-label="Next image"
+            title="Next image"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+
+          {/* Swipe Indicator & Dots */}
+          <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-black/65 px-2.5 py-1 rounded-full backdrop-blur-xs z-20 border border-white/10">
+            <span className="text-[10px] text-amber-300 font-bold uppercase tracking-wider mr-1">
+              Swipe ({currentIndex + 1}/{images.length})
+            </span>
+            {images.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setCurrentIndex(idx);
+                }}
+                className={`h-2 rounded-full transition-all cursor-pointer ${
+                  currentIndex === idx ? 'bg-amber-400 w-5' : 'bg-white/50 hover:bg-white w-2'
+                }`}
+                aria-label={`Slide ${idx + 1}`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+
+      {/* Destination Details & Photo Caption Overlay */}
+      <div className="absolute bottom-3.5 left-4 right-4 text-white pointer-events-none z-10">
+        <span className="text-[11px] font-bold uppercase tracking-wider text-amber-300 block mb-0.5">
+          {country}
+        </span>
+        <h4 className="text-lg font-bold font-['Outfit',sans-serif] drop-shadow-sm">
+          {destName}
+        </h4>
+        {photoCaption && (
+          <p className="text-[11px] text-white/90 font-medium tracking-wide drop-shadow-sm mt-0.5 flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 inline-block shrink-0" />
+            <span>{photoCaption}</span>
+          </p>
+        )}
+      </div>
+    </div>
+  );
+};
 
 interface DestinationsSectionProps {
   onSelectDestinationForQuote: (destName: string) => void;
@@ -167,13 +307,15 @@ export const DestinationsSection: React.FC<DestinationsSectionProps> = ({
           {filteredDestinations.map((dest) => {
             const isExpanded = selectedDestId === dest.id;
             const dropCapLetter = dest.name.replace(/^[^a-zA-Z]+/, '').charAt(0).toUpperCase();
+            const imageList = dest.images && dest.images.length > 0 ? dest.images : [dest.image];
 
             return (
               <div
                 key={dest.id}
-                className={`bg-white rounded-2xl border transition-all duration-300 overflow-hidden ${
+                id={`dest-card-${dest.id}`}
+                className={`bg-white rounded-2xl border transition-all duration-300 overflow-hidden scroll-mt-24 ${
                   isExpanded
-                    ? 'border-[#0a2265] ring-2 ring-[#0a2265]/10 shadow-lg'
+                    ? 'border-[#0a2265] ring-2 ring-[#0a2265]/15 shadow-xl'
                     : 'border-slate-200 hover:border-slate-300 hover:shadow-xs'
                 }`}
               >
@@ -207,6 +349,11 @@ export const DestinationsSection: React.FC<DestinationsSectionProps> = ({
                         <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-blue-50 text-[#0a2265]">
                           {dest.country}
                         </span>
+                        {imageList.length > 1 && (
+                          <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-900">
+                            {imageList.length} Photos (Swipeable)
+                          </span>
+                        )}
                       </div>
                       <p className="text-xs text-slate-500 line-clamp-1">{dest.tagline}</p>
                     </div>
@@ -233,24 +380,12 @@ export const DestinationsSection: React.FC<DestinationsSectionProps> = ({
                 {isExpanded && (
                   <div className="p-6 sm:p-8 border-t border-slate-100 bg-slate-50/50 animate-in fade-in duration-300">
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-                      {/* Destination Image */}
-                      <div className="lg:col-span-5 relative rounded-xl overflow-hidden min-h-[240px] sm:min-h-[270px] bg-slate-900 shadow-xs">
-                        <img
-                          src={dest.image}
-                          alt={dest.name}
-                          className="w-full h-full object-cover object-center"
-                          referrerPolicy="no-referrer"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
-                        <div className="absolute bottom-3.5 left-4 right-4 text-white">
-                          <span className="text-[11px] font-bold uppercase tracking-wider text-amber-300 block mb-0.5">
-                            {dest.country}
-                          </span>
-                          <h4 className="text-lg font-bold font-['Outfit',sans-serif] drop-shadow-sm">
-                            {dest.name}
-                          </h4>
-                        </div>
-                      </div>
+                      {/* Destination Image Swiper (Supports multiple swiping photos) */}
+                      <DestinationSwiper
+                        images={imageList}
+                        destName={dest.name}
+                        country={dest.country}
+                      />
 
                       {/* Drop Cap Information Body */}
                       <div className="lg:col-span-7 flex flex-col justify-between space-y-4">
@@ -321,7 +456,7 @@ export const DestinationsSection: React.FC<DestinationsSectionProps> = ({
 
                           <button
                             onClick={() => onSelectDestinationForQuote(dest.name)}
-                            className="px-4 py-2 text-xs font-bold uppercase tracking-wider text-white bg-[#801416] hover:bg-[#991b1b] rounded-lg shadow-2xs transition-colors cursor-pointer flex items-center gap-1.5"
+                            className="px-4 py-2 text-xs font-bold uppercase tracking-wider text-white bg-[#0a2265] hover:bg-[#07194a] rounded-lg shadow-2xs transition-colors cursor-pointer flex items-center gap-1.5"
                           >
                             <span>Plan Safari to {dest.name}</span>
                             <ArrowRight className="w-3.5 h-3.5" />
@@ -430,7 +565,7 @@ export const DestinationsSection: React.FC<DestinationsSectionProps> = ({
                   <div className="p-3 bg-slate-50 rounded-xl border border-slate-200/80 space-y-1.5 text-xs">
                     <div>
                       <strong className="text-slate-900">Conservation Status:</strong>{' '}
-                      <span className="text-[#801416] font-semibold">
+                      <span className="text-[#0a2265] font-semibold">
                         {selectedAnimal.conservationStatus}
                       </span>
                     </div>
@@ -450,7 +585,7 @@ export const DestinationsSection: React.FC<DestinationsSectionProps> = ({
                         setSelectedAnimal(null);
                         onSelectDestinationForQuote(`Safari to see ${animalName}`);
                       }}
-                      className="px-4 py-2 text-xs font-bold uppercase tracking-wider text-white bg-[#801416] hover:bg-[#991b1b] rounded-lg shadow-2xs transition-colors cursor-pointer"
+                      className="px-4 py-2 text-xs font-bold uppercase tracking-wider text-white bg-[#0a2265] hover:bg-[#07194a] rounded-lg shadow-2xs transition-colors cursor-pointer"
                     >
                       Inquire Wildlife Safari
                     </button>

@@ -94,7 +94,7 @@ export const PolicyModal: React.FC<PolicyModalProps> = ({ policyName, onClose })
     sections: [
       {
         heading: 'General Terms',
-        text: 'For detailed inquiries regarding this policy, please reach out to our customer operations desk at pushworldtravel@gmail.com or via telephone/WhatsApp at 0725 356 926.',
+        text: 'For detailed inquiries regarding this policy, please reach out to our customer operations desk at pushworldtravelltd@gmail.com or via telephone/WhatsApp at 0725 356 926.',
       },
     ],
   };

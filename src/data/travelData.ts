@@ -38,6 +38,25 @@ export const BIGFIVE_SIMBA_IMAGE = '/images/bigfive_simba_lions.jpg';
 export const BIGFIVE_KIFARU_IMAGE = '/images/bigfive_kifaru_rhino.jpg';
 export const BIGFIVE_BUFFALO_IMAGE = '/images/bigfive_buffalo_nyati.jpg';
 
+// Nairobi National Park Photos
+export const NAIROBI_NP_ZEBRAS_SKYLINE = '/images/dest_nairobi_np_zebras_skyline.jpg';
+export const NAIROBI_NP_RHINO_SAVANNA = '/images/dest_nairobi_np_rhino_savanna.jpg';
+
+// Zanzibar Beach Photos (Swiping)
+export const ZANZIBAR_BEACH_AERIAL = '/images/dest_zanzibar_beach_aerial_turquoise.jpg';
+export const ZANZIBAR_BEACH_SUNSET = '/images/dest_zanzibar_beach_sunset_kitesurf.jpg';
+
+// Additional Wildlife & Great Migration Gallery Photos
+export const GALLERY_BUFFALO_OXPECKER = '/images/gallery_buffalo_oxpecker.jpg';
+export const GALLERY_WILDEBEEST_LEAP = '/images/gallery_wildebeest_migration_leap.jpg';
+export const GALLERY_WILDEBEEST_RIVER = '/images/gallery_wildebeest_river_crossing_line.jpg';
+export const GALLERY_ZEBRAS_WILDEBEESTS = '/images/gallery_zebras_wildebeests_grazing.jpg';
+export const GALLERY_LEOPARD_LOOKBACK = '/images/gallery_leopard_portrait_lookback.jpg';
+export const GALLERY_LEOPARD_WALKING = '/images/gallery_leopard_walking_savanna.jpg';
+export const GALLERY_GIRAFFE_ROAD = '/images/gallery_giraffe_road_crossing.jpg';
+export const GALLERY_GIRAFFE_PLAINS = '/images/gallery_giraffe_golden_plains.jpg';
+export const GALLERY_GIRAFFE_PORTRAIT = '/images/gallery_giraffe_tall_grass_portrait.jpg';
+
 // Official Push World Travel Logo Image (transparent background, no black box)
 export const PUSH_WORLD_LOGO_IMAGE = '/images/push_world_logo_transparent.png';
 
@@ -49,7 +68,7 @@ export const COMPANY_INFO = {
   phone: '0725 356 926',
   phoneFormatted: '0725 356 926 (Call & WhatsApp)',
   phoneTel: '+254725356926',
-  email: 'pushworldtravel@gmail.com',
+  email: 'pushworldtravelltd@gmail.com',
   workingHours: {
     description: 'Available throughout the week, our team is dedicated to crafting tailored itineraries and handling all your safari booking details seamlessly.',
     monFri: '09:00 AM – 05:00 PM',
@@ -624,10 +643,87 @@ export const TOUR_PACKAGES: TourPackage[] = [
     ],
     exclusions: ['International flights', 'UAE tourist visa if applicable', 'Personal expenses'],
   },
+  {
+    id: 'zanzibar-beach-escape-5d',
+    title: '5-Day Zanzibar Tropical Beach, Spice Island & Stone Town Holiday',
+    countries: ['Tanzania'],
+    durationDays: 5,
+    durationNights: 4,
+    category: 'Beach Holidays',
+    tag: 'Island Paradise',
+    image: ZANZIBAR_BEACH_AERIAL,
+    overview: 'Experience the exotic Spice Island of Zanzibar: powdery white sands of Paje Beach, kitesurfing, turquoise lagoon dhow cruises, spice plantation aromas, and centuries of Swahili heritage in UNESCO Stone Town.',
+    highlights: [
+      'Beachfront luxury resort stay overlooking turquoise waters',
+      'Private dhow boat cruise across coral reef snorkeling sanctuaries',
+      'Stone Town UNESCO guided walking tour & House of Wonders',
+      'Prison Island giant Aldabra tortoises & spice plantation immersion',
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: 'Arrival in Zanzibar (ZNZ) & Stone Town Transfer',
+        description: 'Meet our Push World Travel representative at Abeid Amani Karume International Airport. Transfer to your boutique heritage hotel in Stone Town. Evening walk along Forodhani Gardens night food market.',
+        accommodation: 'Park Hyatt Zanzibar / Serena Stone Town',
+        mealPlan: 'Dinner',
+      },
+      {
+        day: 2,
+        title: 'Stone Town Cultural Walking Tour & Prison Island',
+        description: 'Wander the atmospheric labyrinthine alleys, carved wooden doors, and historic Old Fort. Afternoon boat to Prison Island to feed giant Aldabra tortoises.',
+        accommodation: 'Park Hyatt Zanzibar',
+        mealPlan: 'Breakfast & Lunch',
+      },
+      {
+        day: 3,
+        title: 'Organic Spice Farm Tour & Paje Beach Resort',
+        description: 'Taste cloves, nutmeg, vanilla, and cinnamon at a family spice farm. Transit east to your luxury oceanfront resort on powdery white Paje Beach.',
+        accommodation: 'The Residence Zanzibar / Baraza Resort',
+        mealPlan: 'Breakfast & All-Inclusive Dinner',
+      },
+      {
+        day: 4,
+        title: 'Paje Beach Leisure, Kitesurfing & Sunset Dhow Sail',
+        description: 'Full day of tropical leisure. Swim in warm turquoise lagoons, try kitesurfing, or relax under coconut palms. Conclude with a romantic sunset wooden dhow cruise.',
+        accommodation: 'The Residence Zanzibar',
+        mealPlan: 'All Inclusive',
+      },
+      {
+        day: 5,
+        title: 'Leisure Morning & Airport Departure',
+        description: 'Enjoy a leisurely breakfast overlooking the Indian Ocean. Private transfer to Zanzibar Airport or ferry terminal for onward journeys.',
+        accommodation: 'Departure',
+        mealPlan: 'Breakfast',
+      },
+    ],
+    inclusions: [
+      '4 nights boutique heritage & 5-star beachfront resort accommodation',
+      'Private airport and island transfers throughout',
+      'Stone Town & Prison Island guided excursions with entrance permits',
+      'Traditional wooden dhow cruise and organic spice farm tour',
+    ],
+    exclusions: ['International flights', 'Tanzania visa', 'Water sports rentals'],
+  },
 ];
 
 // Curated Travel Gallery Items (Updated with authentic wildlife uploads and coastal/beach photography)
 export const INITIAL_GALLERY_ITEMS: GalleryItem[] = [
+  {
+    id: 'gal-nairobi-skyline-zebras',
+    title: 'Nairobi National Park Zebras & City Skyline',
+    category: 'Wildlife & Safaris',
+    location: 'Nairobi National Park, Kenya',
+    imageUrl: NAIROBI_NP_ZEBRAS_SKYLINE,
+    caption: 'Wildlife and plains zebras roaming freely with the modern Nairobi city skyline along the horizon.',
+  },
+  {
+    id: 'gal-nairobi-black-rhino',
+    title: 'Nairobi National Park Black Rhino Sanctuary',
+    category: 'Wildlife & Safaris',
+    location: 'Nairobi National Park, Kenya',
+    imageUrl: NAIROBI_NP_RHINO_SAVANNA,
+    caption: 'Endangered black rhinoceros roaming the protected open wilderness of Nairobi National Park.',
+  },
   {
     id: 'gal-elephant-calf',
     title: 'African Elephant Mother & Snuggling Calf',
@@ -691,6 +787,126 @@ export const INITIAL_GALLERY_ITEMS: GalleryItem[] = [
     location: 'Swahili Coastline, Kenya',
     imageUrl: LUXURY_RESORT_IMAGE,
     caption: 'Boutique oceanfront resort infinity deck overlooking the Indian Ocean.',
+  },
+  {
+    id: 'gal-zanzibar-aerial',
+    title: 'Zanzibar Turquoise Lagoon & Anchored Dhows',
+    category: 'Beaches & Coast',
+    location: 'Zanzibar Island, Tanzania',
+    imageUrl: ZANZIBAR_BEACH_AERIAL,
+    caption: 'Breathtaking aerial view of powdery white beaches and crystal-clear turquoise waters with traditional wooden boats.',
+  },
+  {
+    id: 'gal-zanzibar-sunset',
+    title: 'Zanzibar Sunset Beach & Kitesurfers',
+    category: 'Beaches & Coast',
+    location: 'Paje Beach, Zanzibar',
+    imageUrl: ZANZIBAR_BEACH_SUNSET,
+    caption: 'Serene tropical sunset reflecting off damp white sands as colorful kitesurfers glide across the evening breeze.',
+  },
+  {
+    id: 'gal-wildebeest-leap',
+    title: 'Great Migration Mara River Leap',
+    category: 'Wildlife & Safaris',
+    location: 'Mara River, Kenya & Tanzania',
+    imageUrl: GALLERY_WILDEBEEST_LEAP,
+    caption: 'Dramatic wildlife spectacle as wildebeest herds plunge into churning river waters during the annual migration.',
+  },
+  {
+    id: 'gal-wildebeest-line',
+    title: 'Great Migration River Descent',
+    category: 'Wildlife & Safaris',
+    location: 'Serengeti-Mara Ecosystem',
+    imageUrl: GALLERY_WILDEBEEST_RIVER,
+    caption: 'Thousands of wildebeests streaming down steep cliff banks kicking up dust on their historic crossing journey.',
+  },
+  {
+    id: 'gal-leopard-lookback',
+    title: 'African Leopard on Termite Mound',
+    category: 'Wildlife & Safaris',
+    location: 'Samburu National Reserve, Kenya',
+    imageUrl: GALLERY_LEOPARD_LOOKBACK,
+    caption: 'Solitary African leopard looking intently back across the semi-arid bushlands.',
+  },
+  {
+    id: 'gal-leopard-walking',
+    title: 'African Leopard Stalking on Sand Path',
+    category: 'Wildlife & Safaris',
+    location: 'Maasai Mara, Kenya',
+    imageUrl: GALLERY_LEOPARD_WALKING,
+    caption: 'Intimate close-up of a leopard in soft afternoon golden light prowling through savannah sand tracks.',
+  },
+  {
+    id: 'gal-giraffe-road',
+    title: 'Towering Giraffe on Safari Highway',
+    category: 'Wildlife & Safaris',
+    location: 'Tsavo Ecosystem, Kenya',
+    imageUrl: GALLERY_GIRAFFE_ROAD,
+    caption: 'Majestic bull giraffe pausing tall in the middle of a scenic park road against stormy skies.',
+  },
+  {
+    id: 'gal-giraffe-plains',
+    title: 'Giraffe Striding Across Golden Savannah',
+    category: 'Wildlife & Safaris',
+    location: 'Amboseli Plains, Kenya',
+    imageUrl: GALLERY_GIRAFFE_PLAINS,
+    caption: 'Graceful giraffe walking purposefully across vast shimmering grasslands.',
+  },
+  {
+    id: 'gal-giraffe-portrait',
+    title: 'Giraffe Standing in Sunset Tall Grass',
+    category: 'Wildlife & Safaris',
+    location: 'Lewa Wildlife Conservancy, Kenya',
+    imageUrl: GALLERY_GIRAFFE_PORTRAIT,
+    caption: 'Portrait of an alert giraffe surrounded by golden savanna grass and blue horizon hills.',
+  },
+  {
+    id: 'gal-zebras-wildebeests',
+    title: 'Zebras & Wildebeests Grazing Together',
+    category: 'Wildlife & Safaris',
+    location: 'Serengeti Plains, East Africa',
+    imageUrl: GALLERY_ZEBRAS_WILDEBEESTS,
+    caption: 'Symbiotic mixed herds of plains zebras and blue wildebeests feeding quietly in open green pastures.',
+  },
+  {
+    id: 'gal-buffalo-resting',
+    title: 'Cape Buffalo Pair with Perched Oxpecker',
+    category: 'Wildlife & Safaris',
+    location: 'Maasai Mara, Kenya',
+    imageUrl: GALLERY_BUFFALO_OXPECKER,
+    caption: 'Cape buffaloes resting peacefully together in warm sunlight with an oxpecker grooming atop.',
+  },
+  {
+    id: 'gal-bigfive-simba',
+    title: 'African Lion Kings of the Savannah (Simba)',
+    category: 'Wildlife & Safaris',
+    location: 'Maasai Mara, Kenya',
+    imageUrl: BIGFIVE_SIMBA_IMAGE,
+    caption: 'Majestic African male lions resting in the golden grasses of the savannah plains.',
+  },
+  {
+    id: 'gal-bigfive-kifaru',
+    title: 'Endangered Black Rhinoceros (Kifaru)',
+    category: 'Wildlife & Safaris',
+    location: 'Lewa Wildlife Conservancy, Kenya',
+    imageUrl: BIGFIVE_KIFARU_IMAGE,
+    caption: 'A magnificent black rhino bull roaming in the protected African wilderness.',
+  },
+  {
+    id: 'gal-bigfive-buffalo',
+    title: 'Cape Buffalo Bull with Rugged Horn Boss (Nyati)',
+    category: 'Wildlife & Safaris',
+    location: 'Tsavo West National Park, Kenya',
+    imageUrl: BIGFIVE_BUFFALO_IMAGE,
+    caption: 'Powerful Cape buffalo bull grazing on tough savanna shrubs.',
+  },
+  {
+    id: 'gal-lewa-cruiser-rhino',
+    title: 'Push World 4x4 Cruiser & White Rhino Encounter',
+    category: 'Wildlife & Safaris',
+    location: 'Lewa Wildlife Conservancy, Kenya',
+    imageUrl: LEWA_RHINO_CRUISER_IMAGE,
+    caption: 'Custom Push World Travel 4x4 safari cruiser pausing as a white rhino grazes alongside.',
   },
 ];
 
@@ -760,7 +976,8 @@ export const DESTINATIONS: Destination[] = [
     country: 'Kenya',
     tagline: 'The world’s only wildlife capital: endangered black rhinos and lions against city skylines.',
     description: 'Located only 7 km from Nairobi city center, Nairobi National Park is Kenya’s oldest national park (established 1946). This unique ecological sanctuary allows visitors to witness endangered black rhinos, prides of lions, leopards, cheetahs, and towering giraffes grazing freely on wide open savannah plains with the Nairobi city skyline visible across the horizon. Home to the historic Ivory Burning Site Monument, the David Sheldrick elephant orphanage nearby, and over 400 recorded bird species.',
-    image: KENYA_IMAGE,
+    image: NAIROBI_NP_ZEBRAS_SKYLINE,
+    images: [NAIROBI_NP_ZEBRAS_SKYLINE, NAIROBI_NP_RHINO_SAVANNA],
     bestTime: 'Year-round, with dry months (July to October & January to March) providing easiest wildlife sightings',
     wildlife: ['Black Rhinos', 'Lions', 'Leopards', 'Cheetahs', 'Giraffes', 'Zebras', 'Buffaloes', 'Hippos'],
     highlights: ['Urban Savannah Game Drives', 'Ivory Burning Site Monument', 'Black Rhino Breeding Sanctuary', 'Hippo Pools Nature Trail'],
@@ -982,10 +1199,11 @@ export const DESTINATIONS: Destination[] = [
     country: 'Tanzania',
     tagline: 'Pristine turquoise waters, white sand beaches, and historic Stone Town.',
     description: 'The exotic Spice Island in the Indian Ocean, featuring centuries-old Arab and Swahili architecture in Stone Town, world-class coral reef diving, and tropical relaxation.',
-    image: BEACH_RESORT_IMAGE,
+    image: ZANZIBAR_BEACH_AERIAL,
+    images: [ZANZIBAR_BEACH_AERIAL, ZANZIBAR_BEACH_SUNSET],
     bestTime: 'June to October & December to February',
     wildlife: ['Dolphins', 'Green Sea Turtles', 'Red Colobus Monkeys', 'Tropical Fish'],
-    highlights: ['Stone Town UNESCO Heritage', 'Spice Plantation Tours', 'Prison Island Giant Tortoises'],
+    highlights: ['Stone Town UNESCO Heritage', 'Paje Beach & Kitesurfing', 'Spice Plantation Tours', 'Prison Island Giant Tortoises'],
   },
 
   // Rwanda Destinations
@@ -1017,6 +1235,7 @@ export const DESTINATIONS: Destination[] = [
 
 export const TOP_FOOTER_DESTINATIONS = [
   'Nairobi National Park',
+  'Zanzibar Island',
   'Lake Naivasha',
   'Lake Nakuru',
   'Amboseli National Park',
