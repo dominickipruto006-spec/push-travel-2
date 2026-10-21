@@ -13,6 +13,7 @@ export const TWO_LIONS_BANNER = '/images/dest_two_male_lions_banner_179241047085
 export const HELLS_GATE_IMAGE = '/images/dest_hells_gate_cycling_1792410472229.jpg';
 export const OLPEJETA_IMAGE = '/images/dest_olpejeta_rhino_horn_1792410472237.jpg';
 export const LEWA_IMAGE = '/images/dest_reticulated_giraffes_1792410472378.jpg';
+export const LEWA_RHINO_CRUISER_IMAGE = '/images/dest_lewa_rhino_safari_cruiser.jpg';
 
 // Newly Uploaded Gallery Images
 export const GALLERY_ELEPHANTS_DUST = '/images/gallery_elephant_mother_calf_1792411022869.jpg';
@@ -31,6 +32,11 @@ export const HERO_ELEPHANT_HERD = '/images/hero_elephant_herd_1792412419393.jpg'
 export const HERO_ROARING_LIONESS = '/images/hero_roaring_lioness_1792412436415.jpg';
 export const HERO_TWO_LIONESSES = '/images/hero_two_lionesses_1792412455797.jpg';
 export const HERO_RIFT_GORGE = '/images/hero_rift_gorge_1792412471428.jpg';
+
+// Big Five Newly Uploaded User Images
+export const BIGFIVE_SIMBA_IMAGE = '/images/bigfive_simba_lions.jpg';
+export const BIGFIVE_KIFARU_IMAGE = '/images/bigfive_kifaru_rhino.jpg';
+export const BIGFIVE_BUFFALO_IMAGE = '/images/bigfive_buffalo_nyati.jpg';
 
 // Official Push World Travel Logo Image (transparent background, no black box)
 export const PUSH_WORLD_LOGO_IMAGE = '/images/push_world_logo_transparent.png';
@@ -698,7 +704,7 @@ export const BIG_FIVE: BigFiveAnimal[] = [
     bestParks: ['Maasai Mara (Kenya)', 'Serengeti (Tanzania)', 'Tsavo East (Kenya)'],
     diet: 'Carnivorous (Wildebeest, Zebras, Buffalo)',
     conservationStatus: 'Vulnerable',
-    image: HERO_IMAGE,
+    image: BIGFIVE_SIMBA_IMAGE,
   },
   {
     id: 'elephant',
@@ -731,7 +737,7 @@ export const BIG_FIVE: BigFiveAnimal[] = [
     bestParks: ['Lake Nakuru (Kenya)', 'Ol Pejeta Conservancy (Kenya)', 'Ngorongoro Crater (Tanzania)'],
     diet: 'Browsers & Grazers (Shrubs, grasses)',
     conservationStatus: 'Critically Endangered (Black Rhino)',
-    image: KENYA_IMAGE,
+    image: BIGFIVE_KIFARU_IMAGE,
   },
   {
     id: 'buffalo',
@@ -742,12 +748,89 @@ export const BIG_FIVE: BigFiveAnimal[] = [
     bestParks: ['Ngorongoro Crater (Tanzania)', 'Maasai Mara (Kenya)', 'Lake Nakuru (Kenya)'],
     diet: 'Herbivorous (Coarse savannah tall grasses)',
     conservationStatus: 'Near Threatened',
-    image: ELEPHANTS_IMAGE,
+    image: BIGFIVE_BUFFALO_IMAGE,
   },
 ];
 
 export const DESTINATIONS: Destination[] = [
   // Kenya Destinations (matching Screenshots 2 & 3)
+  {
+    id: 'nairobi-national-park',
+    name: 'Nairobi National Park',
+    country: 'Kenya',
+    tagline: 'The world’s only wildlife capital: endangered black rhinos and lions against city skylines.',
+    description: 'Located only 7 km from Nairobi city center, Nairobi National Park is Kenya’s oldest national park (established 1946). This unique ecological sanctuary allows visitors to witness endangered black rhinos, prides of lions, leopards, cheetahs, and towering giraffes grazing freely on wide open savannah plains with the Nairobi city skyline visible across the horizon. Home to the historic Ivory Burning Site Monument, the David Sheldrick elephant orphanage nearby, and over 400 recorded bird species.',
+    image: KENYA_IMAGE,
+    bestTime: 'Year-round, with dry months (July to October & January to March) providing easiest wildlife sightings',
+    wildlife: ['Black Rhinos', 'Lions', 'Leopards', 'Cheetahs', 'Giraffes', 'Zebras', 'Buffaloes', 'Hippos'],
+    highlights: ['Urban Savannah Game Drives', 'Ivory Burning Site Monument', 'Black Rhino Breeding Sanctuary', 'Hippo Pools Nature Trail'],
+  },
+  {
+    id: 'lake-naivasha',
+    name: 'Lake Naivasha',
+    country: 'Kenya',
+    tagline: 'Freshwater Rift Valley paradise with Crescent Island boat safaris and abundant birdlife.',
+    description: 'A serene freshwater lake in the Great Rift Valley, fringed by yellow-barked fever tree acacias. Renowned for scenic boat safaris passing large hippo pods and the unique Crescent Island Game Sanctuary where visitors can safely walk alongside peaceful giraffes, zebras, and waterbucks on foot.',
+    image: HELLS_GATE_IMAGE,
+    bestTime: 'Year-round (Morning boat safaris have calm waters and active birdlife)',
+    wildlife: ['Hippos', 'African Fish Eagles', 'Giraffes', 'Zebras', 'Waterbucks', 'Pelicans'],
+    highlights: ['Crescent Island Walking Safari', 'Boat Cruise Among Hippo Pods', 'Birdwatching with 400+ Species', 'Elsamere Conservation Centre'],
+  },
+  {
+    id: 'lake-bogoria',
+    name: 'Lake Bogoria National Reserve',
+    country: 'Kenya',
+    tagline: 'Spectacular millions of pink lesser flamingos and boiling natural geysers.',
+    description: 'A saline, alkaline lake situated in a half-graben basin south of Lake Baringo. Famous for millions of vibrant pink lesser flamingos feeding along the shores and dramatic geothermal geysers erupting boiling mineral water up to 5 meters into the air.',
+    image: BEACH_RESORT_IMAGE,
+    bestTime: 'August to October & December to February for peak flamingo concentrations',
+    wildlife: ['Lesser Flamingos', 'Greater Kudus', 'Cheetahs', 'Caracals', 'Baboons'],
+    highlights: ['Natural Boiling Geysers & Hot Springs', 'Flamingo Shoreline Spectacle', 'Greater Kudu Tracking', 'Scenic Rift Escarpment Views'],
+  },
+  {
+    id: 'aberdare-national-park',
+    name: 'Aberdare National Park',
+    country: 'Kenya',
+    tagline: 'Misty moorlands, tumbling waterfalls, and iconic treetop wildlife viewing lodges.',
+    description: 'Part of the Aberdare Mountain Range with picturesque steep forested ravines, open moorlands, and spectacular waterfalls like Karuru Falls. Famous for historic overnight tree-lodges overlooking floodlit waterholes frequented by rare bongo antelopes, giant forest hogs, and black leopards.',
+    image: KENYA_IMAGE,
+    bestTime: 'January to March & June to September (Dry weather for mountain roads)',
+    wildlife: ['Rare Bongo Antelopes', 'Black Rhinos', 'Forest Elephants', 'Leopards', 'Colobus Monkeys'],
+    highlights: ['Karuru & Chania Waterfalls', 'Overnight Floodlit Waterhole Viewing', 'Moorland Trout Fishing', 'Historic Queen Elizabeth Treetops Site'],
+  },
+  {
+    id: 'shimba-hills',
+    name: 'Shimba Hills National Reserve',
+    country: 'Kenya',
+    tagline: 'Coastal rainforest haven protecting Kenya’s only breeding population of Sable Antelope.',
+    description: 'A lush coastal rainforest reserve only 33 km south of Mombasa. Features dramatic coastal escarpments with views of the Indian Ocean, breathtaking Sheldrick Falls plunge pool, and Kenya’s only sanctuary protecting the majestic sable antelope with long curved scimitar horns.',
+    image: BEACH_RESORT_IMAGE,
+    bestTime: 'Year-round, with refreshing cool coastal breezes and swimming at Sheldrick Falls',
+    wildlife: ['Rare Sable Antelope', 'Coastal Elephants', 'Leopards', 'Black and White Colobus Monkeys'],
+    highlights: ['Guided Hike to Sheldrick Falls', 'Sable Antelope Sanctuary', 'Ocean Viewpoint Picnic Sites', 'Tropical Rainforest Canopy'],
+  },
+  {
+    id: 'meru-national-park',
+    name: 'Meru National Park',
+    country: 'Kenya',
+    tagline: 'Untamed wilderness of Elsa the Lioness, 13 crystal rivers, and thriving rhino sanctuary.',
+    description: 'Wild and uncrowded, Meru National Park was made famous by Joy and George Adamson’s book "Born Free" and Elsa the lioness. Crossed by 13 perennial rivers lined with doum palms, Meru features a heavily guarded 48 sq km rhino sanctuary protecting thriving populations of black and white rhinos.',
+    image: ELEPHANTS_IMAGE,
+    bestTime: 'June to October & December to March',
+    wildlife: ['White & Black Rhinos', 'Lion Prides', 'Elephants', 'Gerenuks', 'Somali Ostriches', 'Reticulated Giraffes'],
+    highlights: ['Elsa the Lioness Grave Site', 'Adamson’s Falls & Tana River', 'Fenced Rhino Sanctuary Game Drives', 'Pristine Wilderness Solitude'],
+  },
+  {
+    id: 'taita-hills',
+    name: 'Taita Hills Wildlife Sanctuary',
+    country: 'Kenya',
+    tagline: 'Private conservancy with iconic stilt lodges overlooking active salt-licks.',
+    description: 'A private wildlife sanctuary adjacent to Tsavo West National Park. Famous for the world-renowned Sarova Salt Lick Lodge built on high stilts directly above active waterholes and subterranean viewing tunnels where guests can photograph elephants drinking from just inches away.',
+    image: ELEPHANTS_IMAGE,
+    bestTime: 'Year-round, with exceptional game viewing around the waterholes during dry season',
+    wildlife: ['Red-dust Elephants', 'Lions', 'Cheetahs', 'Buffalos', 'Over 300 Bird Species'],
+    highlights: ['Underground Bunker Photography Tunnel', 'Stilt Lodge Over Waterholes', 'Night Game Drives', 'Tsavo Ecosystem Wildlife Corridor'],
+  },
   {
     id: 'hells-gate',
     name: "Hell's Gate National Park",
@@ -798,10 +881,10 @@ export const DESTINATIONS: Destination[] = [
     country: 'Kenya',
     tagline: 'UNESCO World Heritage wildlife corridor and global model for community conservation.',
     description: 'Stretching across northern foothills of Mount Kenya, Lewa protects 12% of Kenya’s black rhino population and the world’s single largest endangered population of Grevy’s zebras across rolling savannah grasslands.',
-    image: KENYA_IMAGE,
+    image: LEWA_RHINO_CRUISER_IMAGE,
     bestTime: 'January to March & June to September',
     wildlife: ['Black Rhinos', 'White Rhinos', 'Grevy’s Zebras', 'Elephants', 'Lions', 'Leopards'],
-    highlights: ['Rhino Tracking on Foot', 'Horseback Safaris', 'Scenic Canopy Canopy Walkway', 'Mount Kenya Views'],
+    highlights: ['Rhino Tracking on Foot', 'Horseback Safaris', 'Scenic Canopy Walkway', 'Mount Kenya Views'],
   },
   {
     id: 'tsavo-west',
@@ -944,6 +1027,46 @@ export const TOP_FOOTER_DESTINATIONS = [
   'Aberdare National Park',
   'Taita Hills Wildlife Sanctuary',
 ];
+
+export const getDestinationIdByName = (name: string): string => {
+  const mapping: Record<string, string> = {
+    'nairobi national park': 'nairobi-national-park',
+    'lake naivasha': 'lake-naivasha',
+    'lake nakuru': 'lake-nakuru',
+    'lake nakuru national park': 'lake-nakuru',
+    'amboseli national park': 'amboseli',
+    'amboseli': 'amboseli',
+    'masai mara national reserve': 'masai-mara',
+    'maasai mara': 'masai-mara',
+    'masai mara': 'masai-mara',
+    'lake bogoria': 'lake-bogoria',
+    'lake bogoria national reserve': 'lake-bogoria',
+    'shimba hills national reserve': 'shimba-hills',
+    'shimba hills': 'shimba-hills',
+    'meru national park': 'meru-national-park',
+    'aberdare national park': 'aberdare-national-park',
+    'taita hills wildlife sanctuary': 'taita-hills',
+    'taita hills': 'taita-hills',
+    'hells gate national park': 'hells-gate',
+    'olpejeta conservancy': 'ol-pejeta',
+    'lewa wildlife conservancy': 'lewa',
+    'serengeti national park': 'serengeti',
+    'ngorongoro crater': 'ngorongoro',
+    'volcanoes national park': 'volcanoes-np',
+    'bwindi impenetrable forest': 'bwindi',
+    'zanzibar archipelago': 'zanzibar',
+  };
+
+  const key = name.toLowerCase().replace(/[^a-z0-9 ]/g, '').trim();
+  if (mapping[key]) return mapping[key];
+
+  const found = DESTINATIONS.find((d) => {
+    const dName = d.name.toLowerCase().replace(/[^a-z0-9 ]/g, '').trim();
+    return dName.includes(key) || key.includes(dName) || d.id === key;
+  });
+
+  return found ? found.id : 'nairobi-national-park';
+};
 
 export const FAQS: FAQItem[] = [
   {

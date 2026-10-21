@@ -1,6 +1,6 @@
 import React from 'react';
 import { Phone, Mail, MapPin } from 'lucide-react';
-import { TOP_FOOTER_DESTINATIONS, LANGUAGES } from '../data/travelData';
+import { TOP_FOOTER_DESTINATIONS, LANGUAGES, getDestinationIdByName } from '../data/travelData';
 import { SupportedLanguage } from '../types/travel';
 import { TRANSLATIONS } from '../data/translations';
 import { BrandLogo } from './BrandLogo';
@@ -10,7 +10,7 @@ interface FooterProps {
   currentLang: SupportedLanguage;
   onLanguageChange: (lang: SupportedLanguage) => void;
   onRequestQuoteClick: () => void;
-  onNavigate: (sectionId: string) => void;
+  onNavigate: (sectionId: string, destinationId?: string) => void;
   onOpenPolicyModal: (policyName: string) => void;
 }
 
@@ -52,11 +52,12 @@ export const Footer: React.FC<FooterProps> = ({
               Top Destinations
             </h4>
             <ul className="space-y-2 text-white/85 text-xs sm:text-[13px]">
-              {TOP_FOOTER_DESTINATIONS.slice(0, 6).map((dest) => (
+              {TOP_FOOTER_DESTINATIONS.map((dest) => (
                 <li key={dest}>
                   <button
-                    onClick={() => onNavigate('destinations')}
-                    className="hover:text-amber-300 transition-colors cursor-pointer"
+                    onClick={() => onNavigate('destinations', getDestinationIdByName(dest))}
+                    className="hover:text-amber-300 transition-colors cursor-pointer text-left block w-full truncate"
+                    title={`Explore ${dest}`}
                   >
                     {dest}
                   </button>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   MapPin,
   Calendar,
@@ -28,9 +28,36 @@ export const DestinationsSection: React.FC<DestinationsSectionProps> = ({
 }) => {
   const [selectedCountry, setSelectedCountry] = useState<string>('All');
   const [selectedDestId, setSelectedDestId] = useState<string>(
-    initialDestinationId || 'hells-gate'
+    initialDestinationId || 'nairobi-national-park'
   );
   const [selectedAnimal, setSelectedAnimal] = useState<BigFiveAnimal | null>(null);
+
+  useEffect(() => {
+    if (initialDestinationId) {
+      setSelectedDestId(initialDestinationId);
+      const target = DESTINATIONS.find((d) => d.id === initialDestinationId);
+      if (target && selectedCountry !== 'All' && target.country !== selectedCountry) {
+        setSelectedCountry('All');
+      }
+      const timer = setTimeout(() => {
+        const el = document.getElementById(`dest-card-${initialDestinationId}`);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 120);
+      return () => clearTimeout(timer);
+    }
+  }, [initialDestinationId]);
+
+  const handleSelectPill = (destId: string) => {
+    setSelectedDestId(destId);
+    setTimeout(() => {
+      const el = document.getElementById(`dest-card-${destId}`);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }, 60);
+  };
 
   const countries = ['All', 'Kenya', 'Tanzania', 'Uganda', 'Rwanda'];
 
@@ -119,7 +146,7 @@ export const DestinationsSection: React.FC<DestinationsSectionProps> = ({
               return (
                 <button
                   key={dest.id}
-                  onClick={() => setSelectedDestId(dest.id)}
+                  onClick={() => handleSelectPill(dest.id)}
                   className={`px-3.5 py-2 text-xs font-bold rounded-xl transition-all cursor-pointer flex items-center gap-1.5 ${
                     isSelected
                       ? 'bg-[#ea580c] text-white shadow-md scale-102 ring-2 ring-[#ea580c]/30'
@@ -207,19 +234,19 @@ export const DestinationsSection: React.FC<DestinationsSectionProps> = ({
                   <div className="p-6 sm:p-8 border-t border-slate-100 bg-slate-50/50 animate-in fade-in duration-300">
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
                       {/* Destination Image */}
-                      <div className="lg:col-span-5 relative rounded-xl overflow-hidden min-h-[240px] bg-slate-900 shadow-xs">
+                      <div className="lg:col-span-5 relative rounded-xl overflow-hidden min-h-[240px] sm:min-h-[270px] bg-slate-900 shadow-xs">
                         <img
                           src={dest.image}
                           alt={dest.name}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover object-center"
                           referrerPolicy="no-referrer"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />
-                        <div className="absolute bottom-3 left-4 right-4 text-white">
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+                        <div className="absolute bottom-3.5 left-4 right-4 text-white">
                           <span className="text-[11px] font-bold uppercase tracking-wider text-amber-300 block mb-0.5">
                             {dest.country}
                           </span>
-                          <h4 className="text-lg font-bold font-['Outfit',sans-serif]">
+                          <h4 className="text-lg font-bold font-['Outfit',sans-serif] drop-shadow-sm">
                             {dest.name}
                           </h4>
                         </div>

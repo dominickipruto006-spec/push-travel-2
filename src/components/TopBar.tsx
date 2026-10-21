@@ -39,6 +39,7 @@ export const TopBar: React.FC<TopBarProps> = ({
   ];
 
   const quickDestinations = [
+    { id: 'nairobi-national-park', name: 'Nairobi National Park', country: 'Kenya' },
     { id: 'hells-gate', name: "Hell's Gate National Park", country: 'Kenya' },
     { id: 'ol-pejeta', name: 'Olpejeta Conservancy', country: 'Kenya' },
     { id: 'masai-mara', name: 'Maasai Mara National Reserve', country: 'Kenya' },
