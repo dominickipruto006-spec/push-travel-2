@@ -18,9 +18,19 @@ import { QuoteRequestModal } from './components/QuoteRequestModal';
 import { FloatingQuoteWidget } from './components/FloatingQuoteWidget';
 import { PolicyModal } from './components/PolicyModal';
 import { SupportedLanguage, TourPackage } from './types/travel';
+import { AdminDashboard } from './components/admin/AdminDashboard';
+import { useEffect } from 'react';
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<string>('home');
+  const [currentPage, setCurrentPage] = useState<string>(() => {
+    if (typeof window !== 'undefined') {
+      const path = window.location.pathname;
+      const hash = window.location.hash;
+      if (path === '/admin' || hash === '#admin') return 'admin';
+      if (path === '/eta' || hash === '#eta') return 'eta';
+    }
+    return 'home';
+  });
   const [currentLang, setCurrentLang] = useState<SupportedLanguage>('en');
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
   const [quoteInitialData, setQuoteInitialData] = useState<{
@@ -31,14 +41,32 @@ export default function App() {
   const [selectedPolicy, setSelectedPolicy] = useState<string | null>(null);
   const [selectedDestinationId, setSelectedDestinationId] = useState<string>('hells-gate');
 
+  useEffect(() => {
+    const handleUrlCheck = () => {
+      const path = window.location.pathname;
+      const hash = window.location.hash;
+      if (path === '/admin' || hash === '#admin') {
+        setCurrentPage('admin');
+      } else if (path === '/eta' || hash === '#eta') {
+        setCurrentPage('eta');
+      }
+    };
+    window.addEventListener('popstate', handleUrlCheck);
+    return () => window.removeEventListener('popstate', handleUrlCheck);
+  }, []);
+
   const navigateToPage = (pageId: string, destinationId?: string) => {
     if (destinationId) {
       setSelectedDestinationId(destinationId);
     }
-    // If user clicks "faq", take them to "about" page where FAQ accordion lives
-    if (pageId === 'faq') {
+    if (pageId === 'admin') {
+      window.history.pushState(null, '', '/admin');
+      setCurrentPage('admin');
+    } else if (pageId === 'faq') {
+      if (window.location.pathname === '/admin') window.history.pushState(null, '', '/');
       setCurrentPage('about');
     } else {
+      if (window.location.pathname === '/admin') window.history.pushState(null, '', '/');
       setCurrentPage(pageId);
     }
     if (!destinationId) {
@@ -68,6 +96,14 @@ export default function App() {
       packageName: `Inquiry: ${serviceTitle}`,
     });
   };
+
+  if (currentPage === 'admin') {
+    return (
+      <div className="min-h-screen bg-slate-900 text-slate-100 font-['Plus_Jakarta_Sans',sans-serif]">
+        <AdminDashboard onNavigateHome={() => navigateToPage('home')} />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#fafaf9] text-slate-800 flex flex-col font-['Plus_Jakarta_Sans',sans-serif]">

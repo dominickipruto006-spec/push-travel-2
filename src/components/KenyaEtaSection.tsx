@@ -104,8 +104,15 @@ export const KenyaEtaSection: React.FC<KenyaEtaSectionProps> = ({
     flightTicketUrl: '',
     accommodationProofUrl: '',
 
-    agreeToTerms: false,
+    // Mandatory Applicant Declarations and Statutory Consents
     confirmInformationAccuracy: false,
+    authoriseProcessing: false,
+    acceptTermsPrivacy: false,
+    acknowledgeGovDecision: false,
+    acknowledgeNoGuarantee: false,
+    understandRefundPolicy: false,
+    consentSensitiveData: false,
+    agreeToTerms: false,
   });
 
   // Payment Modal State
@@ -256,8 +263,34 @@ export const KenyaEtaSection: React.FC<KenyaEtaSectionProps> = ({
         alert('Please upload your Recent Passport Photo / Selfie (or click "Use Sample Photo").');
         return false;
       }
-      if (!formData.agreeToTerms || !formData.confirmInformationAccuracy) {
-        alert('Please accept the accuracy declaration and terms to proceed.');
+      
+      const missingDeclarations: string[] = [];
+      if (!formData.confirmInformationAccuracy) {
+        missingDeclarations.push('Information accuracy & document match confirmation');
+      }
+      if (!formData.authoriseProcessing) {
+        missingDeclarations.push('Authorisation for Push World Travel Ltd to process travel data');
+      }
+      if (!formData.acceptTermsPrivacy) {
+        missingDeclarations.push('Privacy policy and service terms agreement');
+      }
+      if (!formData.acknowledgeGovDecision) {
+        missingDeclarations.push('Acknowledgment that Government of Kenya makes final approval decision');
+      }
+      if (!formData.acknowledgeNoGuarantee) {
+        missingDeclarations.push('Understanding that application/payment does not guarantee approval');
+      }
+      if (!formData.understandRefundPolicy) {
+        missingDeclarations.push('Understanding of applicable refund and cancellation policy');
+      }
+      if (!formData.consentSensitiveData) {
+        missingDeclarations.push('Consent for handling sensitive travel documents and sharing with authorities');
+      }
+
+      if (missingDeclarations.length > 0) {
+        alert(
+          `Please confirm all 7 mandatory applicant declarations before proceeding:\n\n• ${missingDeclarations.join('\n• ')}`
+        );
         return false;
       }
       return true;
@@ -358,9 +391,15 @@ export const KenyaEtaSection: React.FC<KenyaEtaSectionProps> = ({
         setPaymentStep('success');
         // Refresh admin applications
         etaService.getAllApplications().then(setAdminApplications);
+      } else {
+        alert(
+          res.error ||
+            'Payment verification failed on the backend gateway. The application has NOT been marked as paid. Please check your card information and try again.'
+        );
+        setPaymentStep('card_input');
       }
-    } catch (err) {
-      alert('Payment authorization failed. Please try again.');
+    } catch (err: any) {
+      alert(err.message || 'Payment processing failed. Application remains unpaid.');
       setPaymentStep('card_input');
     } finally {
       setPaymentProcessing(false);
@@ -1308,35 +1347,201 @@ export const KenyaEtaSection: React.FC<KenyaEtaSectionProps> = ({
                     </div>
                   </div>
 
-                  {/* Legal Terms & Accuracy Declarations */}
-                  <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-3">
-                    <label className="flex items-start gap-2.5 cursor-pointer">
-                      <input
-                        type="checkbox"
-                        name="confirmInformationAccuracy"
-                        checked={formData.confirmInformationAccuracy}
-                        onChange={handleInputChange}
-                        className="mt-0.5 text-[#0a2265] focus:ring-[#0a2265] rounded"
-                        required
-                      />
-                      <span className="text-xs text-slate-700 leading-normal">
-                        I hereby declare that the particulars furnished above are true and complete. I understand that any false or misleading declaration may result in the refusal or immediate cancellation of my Kenya eTA.
-                      </span>
-                    </label>
+                  {/* SECTION 4: Mandatory Applicant Declaration and Statutory Consents */}
+                  <div className="p-5 sm:p-6 bg-slate-50 rounded-2xl border border-slate-200/90 shadow-2xs space-y-4">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-200">
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <ShieldCheck className="w-5 h-5 text-[#0a2265]" />
+                          <h3 className="text-sm sm:text-base font-bold text-slate-900 font-['Outfit',sans-serif]">
+                            4. Applicant Declaration &amp; Statutory Consent
+                          </h3>
+                        </div>
+                        <p className="text-[11px] text-slate-500 mt-0.5">
+                          In accordance with Kenya Department of Immigration Services guidelines, please review and confirm each mandatory declaration below.
+                        </p>
+                      </div>
 
-                    <label className="flex items-start gap-2.5 cursor-pointer">
-                      <input
-                        type="checkbox"
-                        name="agreeToTerms"
-                        checked={formData.agreeToTerms}
-                        onChange={handleInputChange}
-                        className="mt-0.5 text-[#0a2265] focus:ring-[#0a2265] rounded"
-                        required
-                      />
-                      <span className="text-xs text-slate-700 leading-normal">
-                        I authorize <strong>Push World Travel Ltd</strong> to act as my designated representative to file my application with the Kenya Department of Immigration Services, pre-check documents at Push Building, Thome, and activate AMREF Flying Doctors travel medical coverage.
-                      </span>
-                    </label>
+                      {/* Quick Select All Toggle Button */}
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const allChecked =
+                            formData.confirmInformationAccuracy &&
+                            formData.authoriseProcessing &&
+                            formData.acceptTermsPrivacy &&
+                            formData.acknowledgeGovDecision &&
+                            formData.acknowledgeNoGuarantee &&
+                            formData.understandRefundPolicy &&
+                            formData.consentSensitiveData;
+                          const next = !allChecked;
+                          setFormData((p) => ({
+                            ...p,
+                            confirmInformationAccuracy: next,
+                            authoriseProcessing: next,
+                            acceptTermsPrivacy: next,
+                            acknowledgeGovDecision: next,
+                            acknowledgeNoGuarantee: next,
+                            understandRefundPolicy: next,
+                            consentSensitiveData: next,
+                            agreeToTerms: next,
+                          }));
+                        }}
+                        className="px-3 py-1.5 rounded-lg text-xs font-bold bg-[#0a2265]/10 hover:bg-[#0a2265]/20 text-[#0a2265] transition-colors cursor-pointer self-start sm:self-auto shrink-0"
+                      >
+                        {formData.confirmInformationAccuracy &&
+                        formData.authoriseProcessing &&
+                        formData.acceptTermsPrivacy &&
+                        formData.acknowledgeGovDecision &&
+                        formData.acknowledgeNoGuarantee &&
+                        formData.understandRefundPolicy &&
+                        formData.consentSensitiveData
+                          ? 'Deselect All'
+                          : 'Select All Declarations'}
+                      </button>
+                    </div>
+
+                    <div className="space-y-3.5 pt-1">
+                      {/* Consent 1: Accurate Information & Document Match */}
+                      <label className="flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-200 hover:border-slate-300 transition-colors cursor-pointer">
+                        <input
+                          type="checkbox"
+                          name="confirmInformationAccuracy"
+                          checked={formData.confirmInformationAccuracy}
+                          onChange={handleInputChange}
+                          className="mt-0.5 w-4 h-4 text-[#0a2265] focus:ring-[#0a2265] rounded border-slate-300 shrink-0"
+                          required
+                        />
+                        <div className="text-xs text-slate-700 leading-relaxed">
+                          <span className="font-bold text-slate-900 block mb-0.5">
+                            1. Accurate Information &amp; Travel Document Match *
+                          </span>
+                          <span>
+                            I confirm that the supplied information is accurate, true, and exactly matches my valid passport and travel documents. I understand that false or mismatched information may lead to rejection without refund.
+                          </span>
+                        </div>
+                      </label>
+
+                      {/* Consent 2: Authorise Push World Travel Ltd */}
+                      <label className="flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-200 hover:border-slate-300 transition-colors cursor-pointer">
+                        <input
+                          type="checkbox"
+                          name="authoriseProcessing"
+                          checked={formData.authoriseProcessing}
+                          onChange={handleInputChange}
+                          className="mt-0.5 w-4 h-4 text-[#0a2265] focus:ring-[#0a2265] rounded border-slate-300 shrink-0"
+                          required
+                        />
+                        <div className="text-xs text-slate-700 leading-relaxed">
+                          <span className="font-bold text-slate-900 block mb-0.5">
+                            2. Representation &amp; Processing Authorization *
+                          </span>
+                          <span>
+                            I authorise <strong>Push World Travel Ltd</strong> to process and manage the information necessary to provide the requested Kenya eTA assistance, pre-checking, and travel services on my behalf.
+                          </span>
+                        </div>
+                      </label>
+
+                      {/* Consent 3: Privacy Policy and Service Terms */}
+                      <label className="flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-200 hover:border-slate-300 transition-colors cursor-pointer">
+                        <input
+                          type="checkbox"
+                          name="acceptTermsPrivacy"
+                          checked={formData.acceptTermsPrivacy}
+                          onChange={handleInputChange}
+                          className="mt-0.5 w-4 h-4 text-[#0a2265] focus:ring-[#0a2265] rounded border-slate-300 shrink-0"
+                          required
+                        />
+                        <div className="text-xs text-slate-700 leading-relaxed">
+                          <span className="font-bold text-slate-900 block mb-0.5">
+                            3. Privacy Policy &amp; Service Terms Acceptance *
+                          </span>
+                          <span>
+                            I have read, understood, and accepted the Push World Travel Ltd Privacy Policy and Service Terms &amp; Conditions governing electronic visa filing and travel operations.
+                          </span>
+                        </div>
+                      </label>
+
+                      {/* Consent 4: Government of Kenya Final Decision */}
+                      <label className="flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-200 hover:border-slate-300 transition-colors cursor-pointer">
+                        <input
+                          type="checkbox"
+                          name="acknowledgeGovDecision"
+                          checked={formData.acknowledgeGovDecision}
+                          onChange={handleInputChange}
+                          className="mt-0.5 w-4 h-4 text-[#0a2265] focus:ring-[#0a2265] rounded border-slate-300 shrink-0"
+                          required
+                        />
+                        <div className="text-xs text-slate-700 leading-relaxed">
+                          <span className="font-bold text-slate-900 block mb-0.5">
+                            4. Sovereign Approval Authority *
+                          </span>
+                          <span>
+                            I understand and acknowledge that the <strong>Government of Kenya (Department of Immigration Services)</strong> possesses sole and final sovereign authority on all eTA approval, review, or denial decisions.
+                          </span>
+                        </div>
+                      </label>
+
+                      {/* Consent 5: No Guarantee of Approval */}
+                      <label className="flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-200 hover:border-slate-300 transition-colors cursor-pointer">
+                        <input
+                          type="checkbox"
+                          name="acknowledgeNoGuarantee"
+                          checked={formData.acknowledgeNoGuarantee}
+                          onChange={handleInputChange}
+                          className="mt-0.5 w-4 h-4 text-[#0a2265] focus:ring-[#0a2265] rounded border-slate-300 shrink-0"
+                          required
+                        />
+                        <div className="text-xs text-slate-700 leading-relaxed">
+                          <span className="font-bold text-slate-900 block mb-0.5">
+                            5. Submission &amp; Payment Does Not Guarantee Approval *
+                          </span>
+                          <span>
+                            I understand that submitting an application or paying for assistance and travel insurance does not guarantee approval, issuance of an eTA, or border entry at the port of arrival.
+                          </span>
+                        </div>
+                      </label>
+
+                      {/* Consent 6: Applicable Refund & Cancellation Policy */}
+                      <label className="flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-200 hover:border-slate-300 transition-colors cursor-pointer">
+                        <input
+                          type="checkbox"
+                          name="understandRefundPolicy"
+                          checked={formData.understandRefundPolicy}
+                          onChange={handleInputChange}
+                          className="mt-0.5 w-4 h-4 text-[#0a2265] focus:ring-[#0a2265] rounded border-slate-300 shrink-0"
+                          required
+                        />
+                        <div className="text-xs text-slate-700 leading-relaxed">
+                          <span className="font-bold text-slate-900 block mb-0.5">
+                            6. Refund &amp; Cancellation Terms *
+                          </span>
+                          <span>
+                            I understand and accept the applicable refund and cancellation policy: government statutory application fees, card gateway costs, and administrative processing fees become non-refundable once an application is queued or submitted to the immigration portal.
+                          </span>
+                        </div>
+                      </label>
+
+                      {/* Consent 7: Sensitive Travel Documents & Authority Sharing Consent */}
+                      <label className="flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-200 hover:border-slate-300 transition-colors cursor-pointer">
+                        <input
+                          type="checkbox"
+                          name="consentSensitiveData"
+                          checked={formData.consentSensitiveData}
+                          onChange={handleInputChange}
+                          className="mt-0.5 w-4 h-4 text-[#0a2265] focus:ring-[#0a2265] rounded border-slate-300 shrink-0"
+                          required
+                        />
+                        <div className="text-xs text-slate-700 leading-relaxed">
+                          <span className="font-bold text-slate-900 block mb-0.5">
+                            7. Sensitive Travel Documents &amp; Authority Data Sharing Consent *
+                          </span>
+                          <span>
+                            I provide explicit consent for Push World Travel Ltd to collect, encrypt, and securely transmit my sensitive documents (passport bio-data, facial biometric photograph, travel itineraries, and contact details) to the Kenya Immigration Department, border control, and authorized AMREF medical evacuation underwriters.
+                          </span>
+                        </div>
+                      </label>
+                    </div>
                   </div>
 
                   <div className="pt-6 border-t border-slate-100 flex items-center justify-between">
@@ -1354,7 +1559,7 @@ export const KenyaEtaSection: React.FC<KenyaEtaSectionProps> = ({
                       onClick={handleNextStep}
                       className="px-6 py-3 bg-[#0a2265] hover:bg-[#07194a] text-white text-xs sm:text-sm font-bold uppercase tracking-wider rounded-xl shadow-md transition-all flex items-center gap-2 cursor-pointer"
                     >
-                      <span>Review Package &amp; Pricing</span>
+                      <span>Review Application &amp; Pay Securely</span>
                       <ArrowRight className="w-4 h-4" />
                     </button>
                   </div>
@@ -1478,7 +1683,7 @@ export const KenyaEtaSection: React.FC<KenyaEtaSectionProps> = ({
                       ) : (
                         <>
                           <Lock className="w-4 h-4 text-emerald-400" />
-                          <span>Pay USD 157.50 &amp; Submit eTA</span>
+                          <span>Review Application &amp; Pay Securely</span>
                         </>
                       )}
                     </button>
@@ -1839,17 +2044,47 @@ export const KenyaEtaSection: React.FC<KenyaEtaSectionProps> = ({
                     </div>
                   )}
 
-                  {/* Payment Receipt Summary */}
-                  {trackedApplication.paymentDetails && (
-                    <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+                  {/* Payment Receipt Summary or Pending Payment Callout */}
+                  {trackedApplication.paymentStatus === 'paid' && trackedApplication.paymentDetails ? (
+                    <div className="p-4 bg-emerald-50/80 rounded-xl border border-emerald-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
                       <div>
-                        <span className="font-bold text-slate-900 block">Payment Receipt: {trackedApplication.paymentDetails.receiptNumber}</span>
-                        <span className="text-slate-500">Transaction ID: {trackedApplication.paymentDetails.transactionId} · {trackedApplication.paymentDetails.paidAt.slice(0, 10)}</span>
+                        <span className="font-bold text-emerald-950 block">Payment Receipt: {trackedApplication.paymentDetails.receiptNumber}</span>
+                        <span className="text-emerald-800">
+                          Transaction ID: {trackedApplication.paymentDetails.transactionId} · {trackedApplication.paymentDetails.paidAt.slice(0, 10)}
+                        </span>
+                        <span className="text-[10px] text-emerald-700 block mt-0.5">
+                          ✓ Verified by Push World Travel International Gateway (3D-Secure Authorized)
+                        </span>
                       </div>
-                      <div className="text-right">
-                        <span className="text-xs text-slate-500 block">Amount Settled</span>
-                        <strong className="text-sm font-bold text-slate-900">USD 157.50 (Paid by Card)</strong>
+                      <div className="text-right shrink-0">
+                        <span className="text-xs text-emerald-800 block">Amount Settled</span>
+                        <strong className="text-sm font-bold text-emerald-950">USD 157.50 (Paid by Card)</strong>
                       </div>
+                    </div>
+                  ) : (
+                    <div className="p-5 bg-amber-50 rounded-xl border-2 border-amber-300 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                      <div className="space-y-1">
+                        <div className="flex items-center gap-2 text-amber-900 font-bold text-sm">
+                          <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0" />
+                          <span>Payment Pending Backend Verification</span>
+                        </div>
+                        <p className="text-xs text-amber-800 leading-relaxed">
+                          Your application has been received, but the fee of <strong>USD 157.50</strong> has not yet been settled. Card payment must be verified before our immigration desk can submit your application to the government portal.
+                        </p>
+                      </div>
+
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setPaymentApplication(trackedApplication);
+                          setCardholderName(`${trackedApplication.givenNames} ${trackedApplication.surname}`);
+                          setIsPaymentModalOpen(true);
+                        }}
+                        className="px-5 py-2.5 bg-[#0a2265] hover:bg-[#07194a] text-white text-xs font-bold uppercase tracking-wider rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer shrink-0"
+                      >
+                        <CreditCard className="w-4 h-4 text-amber-300" />
+                        <span>Review Application &amp; Pay Securely</span>
+                      </button>
                     </div>
                   )}
                 </div>
@@ -2479,7 +2714,7 @@ export const KenyaEtaSection: React.FC<KenyaEtaSectionProps> = ({
                     className="w-full py-3.5 bg-[#0a2265] hover:bg-[#07194a] text-white text-sm font-bold uppercase tracking-wider rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
                   >
                     <Lock className="w-4 h-4 text-emerald-400" />
-                    <span>Authorize Payment of USD 157.50</span>
+                    <span>Review Application &amp; Pay Securely (USD 157.50)</span>
                   </button>
                 </div>
 

@@ -14,7 +14,7 @@ export const FloatingQuoteWidget: React.FC<FloatingQuoteWidgetProps> = ({
   const [chatHistory, setChatHistory] = useState([
     {
       sender: 'agent',
-      text: 'Jambo! 👋 Welcome to Push World Travel. How can our team at Push Building, Thome, Northern Bypass, Nairobi assist your travel plans today? You can also reach us directly via Call & WhatsApp at 0725 356 926.',
+      text: 'Jambo! 👋 Welcome to Push World Travel. How can our team at Push Building, Thome, Northern Bypass, Nairobi assist your travel plans today? You can also reach us directly via Call & WhatsApp at 0725 356 926 or +254 181 223 222.',
       time: 'Just now',
     },
   ]);
@@ -98,13 +98,17 @@ export const FloatingQuoteWidget: React.FC<FloatingQuoteWidgetProps> = ({
 
           {/* Quick Action Badges */}
           <div className="p-2.5 bg-slate-50 border-b border-slate-100 flex items-center justify-between text-[11px]">
-            <a
-              href="tel:+254725356926"
-              className="flex items-center gap-1 text-[#0a2265] font-semibold hover:underline"
-            >
+            <div className="flex items-center gap-1.5 text-[#0a2265] font-semibold">
               <Phone className="w-3 h-3 text-[#ea580c]" />
-              0725 356 926
-            </a>
+              <a href="tel:+254725356926" className="hover:underline">
+                0725 356 926
+              </a>
+              <span className="text-slate-300">/</span>
+              <a href="tel:+254181223222" className="hover:underline inline-flex items-center gap-1">
+                <Phone className="w-3 h-3 text-[#0a2265]" />
+                <span>+254 181 223 222</span>
+              </a>
+            </div>
             <button
               onClick={() => {
                 setIsChatOpen(false);
@@ -112,7 +116,7 @@ export const FloatingQuoteWidget: React.FC<FloatingQuoteWidgetProps> = ({
               }}
               className="text-[#ea580c] font-bold hover:underline cursor-pointer"
             >
-              Open Full Form →
+              Full Form →
             </button>
           </div>
 

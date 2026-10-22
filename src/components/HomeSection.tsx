@@ -56,9 +56,19 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
       />
 
       {/* 3. Discover By Feature Section - Clear gateways to dedicated pages */}
-      <section className="py-16 sm:py-20 bg-white border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-14">
+      <section className="relative py-16 sm:py-20 bg-white border-b border-slate-200 overflow-hidden">
+        {/* Faded Background Image - 2nd image from user (Wildebeest Migration River Crossing) */}
+        <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+          <img
+            src="/images/bg_your_world_journey.png"
+            alt="Wildebeest River Crossing Migration"
+            className="w-full h-full object-cover object-center opacity-55 sm:opacity-60"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-white/10 to-white/60" />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-14 bg-white/95 backdrop-blur-md p-6 sm:p-8 rounded-2xl border border-white/90 shadow-lg">
             <span className="text-xs font-bold text-[#ea580c] uppercase tracking-widest block mb-1.5">
               Your World. Our Journey.
             </span>
@@ -66,7 +76,7 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
               Experience East Africa With The Experts
             </h2>
             <div className="w-16 h-1 bg-gradient-to-r from-[#ea580c] to-[#ff7700] mx-auto mt-3 mb-4 rounded-full" />
-            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+            <p className="text-slate-800 text-sm sm:text-base leading-relaxed font-medium">
               From thrilling Great Migration crossings to secluded Indian Ocean villas and private flight charters, discover how Push World Travel transforms each itinerary into a masterpiece.
             </p>
           </div>
@@ -76,7 +86,7 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
             {/* Card 1: Tours */}
             <div
               onClick={() => onNavigate('tours')}
-              className="group bg-slate-50 hover:bg-white p-6 rounded-2xl border border-slate-200/90 shadow-2xs hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between text-left"
+              className="group bg-white/95 hover:bg-white p-6 rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between text-left backdrop-blur-md"
             >
               <div>
                 <div className="w-12 h-12 rounded-xl bg-orange-100 text-[#ea580c] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
@@ -98,7 +108,7 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
             {/* Card 2: Services */}
             <div
               onClick={() => onNavigate('services')}
-              className="group bg-slate-50 hover:bg-white p-6 rounded-2xl border border-slate-200/90 shadow-2xs hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between text-left"
+              className="group bg-white/95 hover:bg-white p-6 rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between text-left backdrop-blur-md"
             >
               <div>
                 <div className="w-12 h-12 rounded-xl bg-blue-100 text-[#0a2265] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
@@ -120,7 +130,7 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
             {/* Card 3: Destinations */}
             <div
               onClick={() => onNavigate('destinations')}
-              className="group bg-slate-50 hover:bg-white p-6 rounded-2xl border border-slate-200/90 shadow-2xs hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between text-left"
+              className="group bg-white/95 hover:bg-white p-6 rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between text-left backdrop-blur-md"
             >
               <div>
                 <div className="w-12 h-12 rounded-xl bg-amber-100 text-[#d97706] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
@@ -142,7 +152,7 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
             {/* Card 4: Gallery */}
             <div
               onClick={() => onNavigate('gallery')}
-              className="group bg-slate-50 hover:bg-white p-6 rounded-2xl border border-slate-200/90 shadow-2xs hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between text-left"
+              className="group bg-white/95 hover:bg-white p-6 rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between text-left backdrop-blur-md"
             >
               <div>
                 <div className="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">

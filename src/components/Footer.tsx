@@ -78,7 +78,6 @@ export const Footer: React.FC<FooterProps> = ({
                   className="hover:text-amber-300 transition-colors cursor-pointer text-amber-300 font-bold flex items-center gap-1.5"
                 >
                   <span>Kenya eTA &amp; Insurance</span>
-                  <span className="text-[10px] bg-amber-400/20 text-amber-300 px-1.5 py-0.5 rounded uppercase font-bold">USD 157.50</span>
                 </button>
               </li>
               <li>
@@ -129,6 +128,14 @@ export const Footer: React.FC<FooterProps> = ({
                   Privacy Policy
                 </button>
               </li>
+              <li className="pt-1 border-t border-white/10 mt-1">
+                <button
+                  onClick={() => onNavigate('admin')}
+                  className="hover:text-amber-300 transition-colors cursor-pointer text-white/60 hover:text-white text-[11px] flex items-center gap-1.5"
+                >
+                  <span>Staff Portal (/admin)</span>
+                </button>
+              </li>
             </ul>
           </div>
 
@@ -138,14 +145,23 @@ export const Footer: React.FC<FooterProps> = ({
               Get in Touch
             </h4>
             <div className="space-y-2.5 text-white/85 text-xs sm:text-[13px]">
-              <div className="flex items-center justify-center sm:justify-start gap-2">
-                <Phone className="w-4 h-4 text-white shrink-0" />
-                <a
-                  href="tel:+254725356926"
-                  className="hover:text-amber-300 font-semibold"
-                >
-                  0725 356 926
-                </a>
+              <div className="flex items-start justify-center sm:justify-start gap-2">
+                <Phone className="w-4 h-4 text-white shrink-0 mt-0.5" />
+                <div className="flex flex-col gap-1.5">
+                  <a
+                    href="tel:+254725356926"
+                    className="hover:text-amber-300 font-semibold"
+                  >
+                    0725 356 926
+                  </a>
+                  <a
+                    href="tel:+254181223222"
+                    className="hover:text-amber-300 font-semibold flex items-center gap-1.5"
+                  >
+                    <Phone className="w-3.5 h-3.5 text-amber-300 shrink-0" />
+                    <span>+254 181 223 222</span>
+                  </a>
+                </div>
               </div>
               <div className="flex items-center justify-center sm:justify-start gap-2">
                 <Mail className="w-4 h-4 text-white shrink-0" />

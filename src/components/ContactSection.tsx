@@ -43,22 +43,34 @@ export const ContactSection: React.FC = () => {
                 Our Contacts
               </h3>
               <div className="space-y-3">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-blue-50 text-[#0a2265] flex items-center justify-center shrink-0">
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-full bg-blue-50 text-[#0a2265] flex items-center justify-center shrink-0 mt-0.5">
                     <Phone className="w-4 h-4 fill-[#0a2265]" />
                   </div>
-                  <span className="text-sm font-semibold text-slate-800">
-                    Phone :{' '}
-                    <a
-                      href="tel:+254725356926"
-                      className="hover:text-[#ea580c] transition-colors"
-                    >
-                      0725 356 926
-                    </a>{' '}
-                    <span className="text-xs text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded-full ml-1">
-                      (Call &amp; WhatsApp)
+                  <div>
+                    <span className="text-sm font-semibold text-slate-800 block">
+                      Phone Numbers :
                     </span>
-                  </span>
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-1 text-sm">
+                      <a
+                        href="tel:+254725356926"
+                        className="font-bold text-[#0a2265] hover:text-[#ea580c] transition-colors"
+                      >
+                        0725 356 926
+                      </a>
+                      <span className="text-slate-300">|</span>
+                      <a
+                        href="tel:+254181223222"
+                        className="font-bold text-[#0a2265] hover:text-[#ea580c] transition-colors inline-flex items-center gap-1.5"
+                      >
+                        <Phone className="w-3.5 h-3.5 text-[#0a2265] shrink-0" />
+                        <span>+254 181 223 222</span>
+                      </a>
+                      <span className="text-xs text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded-full">
+                        (Call &amp; WhatsApp)
+                      </span>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="flex items-center gap-3">

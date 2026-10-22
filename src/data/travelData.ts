@@ -66,8 +66,10 @@ export const COMPANY_INFO = {
   tagline: 'Your World. Our Journey.',
   slogan: 'Think Travel, Think Push World',
   phone: '0725 356 926',
-  phoneFormatted: '0725 356 926 (Call & WhatsApp)',
+  phone2: '+254 181 223 222',
+  phoneFormatted: '0725 356 926 / +254 181 223 222 (Call & WhatsApp)',
   phoneTel: '+254725356926',
+  phone2Tel: '+254181223222',
   email: 'pushworldtravelltd@gmail.com',
   workingHours: {
     description: 'Available throughout the week, our team is dedicated to crafting tailored itineraries and handling all your safari booking details seamlessly.',
@@ -80,7 +82,7 @@ export const COMPANY_INFO = {
       country: 'KENYA',
       address: 'Push Building, Thome, Northern Bypass, Nairobi',
       isHeadquarters: true,
-      phone: '0725 356 926',
+      phone: '0725 356 926 / +254 181 223 222',
     },
   ],
   socials: {

@@ -68,24 +68,26 @@ export const generateTransactionId = (): string => {
 
 // Main service object
 export const etaService = {
-  // Fetch all applications (for Admin dashboard)
-  async getAllApplications(): Promise<EtaApplication[]> {
+  // 1. Fetch all applications (for Admin dashboard, with optional authorization token)
+  async getAllApplications(adminToken?: string): Promise<EtaApplication[]> {
     try {
-      const res = await fetch('/api/eta/applications');
+      const res = await fetch('/api/eta/applications', {
+        headers: adminToken ? { Authorization: `Bearer ${adminToken}` } : {},
+      });
       if (res.ok) {
         const data = await res.json();
-        if (Array.isArray(data) && data.length > 0) {
+        if (Array.isArray(data)) {
           saveStoredApplications(data);
           return data;
         }
       }
     } catch {
-      // Fallback to local storage if server endpoint not reachable
+      // Fallback to cache if server endpoint temporarily offline
     }
     return getStoredApplications();
   },
 
-  // Track application by Reference or Passport number
+  // 2. Track application by Reference or Passport number (Public)
   async trackApplication(query: string): Promise<EtaApplication | null> {
     const cleanQuery = query.trim().toUpperCase();
     if (!cleanQuery) return null;
@@ -94,7 +96,7 @@ export const etaService = {
       const res = await fetch(`/api/eta/track/${encodeURIComponent(cleanQuery)}`);
       if (res.ok) {
         const data = await res.json();
-        if (data && data.id) return data;
+        if (data && (data.id || data.referenceNumber)) return data;
       }
     } catch {
       // local fallback
@@ -112,10 +114,54 @@ export const etaService = {
     );
   },
 
-  // Submit a new application
+  // 3. Upload secure private document to Supabase Storage private bucket ('eta-documents')
+  async uploadSecureDocument(
+    fileBase64: string,
+    fileName: string,
+    mimeType: string,
+    docType: 'passport_biodata' | 'passport_photo' | 'flight_ticket' | 'accommodation'
+  ): Promise<{ success: boolean; storagePath?: string; url?: string; error?: string }> {
+    try {
+      const res = await fetch('/api/eta/upload-document', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ fileBase64, fileName, mimeType, docType }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        return { success: false, error: data.error || 'Document upload failed server validation' };
+      }
+      return { success: true, storagePath: data.storagePath, url: data.url };
+    } catch (err: any) {
+      return { success: false, error: err.message || 'Network error uploading document' };
+    }
+  },
+
+  // 4. Request short-lived signed URL for an authorized admin to view/download private passport document
+  async getSecureDocumentUrl(storagePath: string, adminToken?: string): Promise<{ success: boolean; signedUrl?: string; error?: string }> {
+    try {
+      const res = await fetch('/api/admin/eta/document-url', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${adminToken || ''}`,
+        },
+        body: JSON.stringify({ storagePath }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        return { success: false, error: data.error || 'Failed to generate signed document URL' };
+      }
+      return { success: true, signedUrl: data.signedUrl };
+    } catch (err: any) {
+      return { success: false, error: err.message || 'Error communicating with document storage' };
+    }
+  },
+
+  // 5. Submit a new application (stored in Supabase eta_applications table)
   async submitApplication(
     formData: EtaApplicationFormData
-  ): Promise<{ success: boolean; application: EtaApplication; error?: string }> {
+  ): Promise<{ success: boolean; application?: EtaApplication; error?: string }> {
     const ref = generateEtaReference();
     const pricing = calculatePricing(BASE_PACKAGE_PRICE);
     const now = new Date().toISOString();
@@ -157,11 +203,20 @@ export const etaService = {
       accommodationName: formData.accommodationName,
       accommodationAddress: formData.accommodationAddress,
 
-      // Declarations
+      // Declarations & Consents
       yellowFeverVaccinated: formData.yellowFeverVaccinated,
       emergencyContactName: formData.emergencyContactName,
       emergencyContactPhone: formData.emergencyContactPhone,
       emergencyContactRelationship: formData.emergencyContactRelationship,
+      declarations: {
+        confirmInformationAccuracy: Boolean(formData.confirmInformationAccuracy),
+        authoriseProcessing: Boolean(formData.authoriseProcessing),
+        acceptTermsPrivacy: Boolean(formData.acceptTermsPrivacy),
+        acknowledgeGovDecision: Boolean(formData.acknowledgeGovDecision),
+        acknowledgeNoGuarantee: Boolean(formData.acknowledgeNoGuarantee),
+        understandRefundPolicy: Boolean(formData.understandRefundPolicy),
+        consentSensitiveData: Boolean(formData.consentSensitiveData),
+      },
 
       // Uploads
       passportBioDataUrl: formData.passportBioDataUrl,
@@ -175,26 +230,33 @@ export const etaService = {
       paymentStatus: 'pending',
     };
 
-    // Save to local storage first
-    const apps = getStoredApplications();
-    const updated = [newApp, ...apps];
-    saveStoredApplications(updated);
-
-    // Try posting to backend
+    // Post to real backend
     try {
-      await fetch('/api/eta/applications', {
+      const res = await fetch('/api/eta/applications', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newApp),
       });
-    } catch (err) {
-      console.warn('Backend sync deferred, saved locally:', err);
-    }
 
-    return { success: true, application: newApp };
+      const data = await res.json();
+      if (!res.ok) {
+        return { success: false, error: data.error || 'Failed to submit application to server' };
+      }
+
+      const savedApp = data.application || newApp;
+      const apps = getStoredApplications();
+      saveStoredApplications([savedApp, ...apps]);
+
+      return { success: true, application: savedApp };
+    } catch (err: any) {
+      console.warn('Backend sync deferred, saving locally:', err);
+      const apps = getStoredApplications();
+      saveStoredApplications([newApp, ...apps]);
+      return { success: true, application: newApp };
+    }
   },
 
-  // Process payment through international card gateway
+  // 6. Process payment through international card gateway with backend verification
   async processPayment(
     applicationId: string,
     cardData: {
@@ -234,27 +296,9 @@ export const etaService = {
       receiptNumber: receiptNum,
     };
 
-    // Update in stored apps
-    const apps = getStoredApplications();
-    const index = apps.findIndex((a) => a.id === applicationId || a.referenceNumber === applicationId);
-    if (index === -1) {
-      return { success: false, error: 'Application not found' };
-    }
-
-    const updatedApp: EtaApplication = {
-      ...apps[index],
-      paymentStatus: 'paid',
-      status: 'under_review', // Moves to active review queue once payment is settled
-      updatedAt: now,
-      paymentDetails,
-    };
-
-    apps[index] = updatedApp;
-    saveStoredApplications(apps);
-
-    // Try posting to backend
+    // Require backend payment verification before marking application as paid
     try {
-      await fetch('/api/eta/payments/process', {
+      const res = await fetch('/api/eta/payments/process', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -262,59 +306,101 @@ export const etaService = {
           paymentDetails,
         }),
       });
-    } catch (err) {
-      console.warn('Backend payment sync deferred:', err);
-    }
 
-    return {
-      success: true,
-      application: updatedApp,
-      payment: paymentDetails,
-    };
+      const data = await res.json();
+
+      if (!res.ok || !data.success || !data.verified) {
+        console.error('Backend payment verification rejected:', data.error);
+        return {
+          success: false,
+          error: data.error || 'Payment could not be verified by Push World Travel gateway. Please verify card details.',
+        };
+      }
+
+      // Backend verified successfully! Update local cache with verified state
+      const verifiedApp = data.application;
+      const verifiedPayment = data.payment || paymentDetails;
+
+      const apps = getStoredApplications();
+      const index = apps.findIndex((a) => a.id === applicationId || a.referenceNumber === applicationId);
+      if (index !== -1) {
+        apps[index] = verifiedApp;
+        saveStoredApplications(apps);
+      }
+
+      return {
+        success: true,
+        application: verifiedApp,
+        payment: verifiedPayment,
+      };
+    } catch (err: any) {
+      console.error('Backend payment verification communication error:', err);
+      return {
+        success: false,
+        error: 'Unable to connect to payment gateway verification server. Application remains unpaid pending verification.',
+      };
+    }
   },
 
-  // Admin: Update Status & Approve
+  // 7. Admin: Update Status & Approve
   async updateApplicationStatus(
     applicationId: string,
     status: EtaStatus,
-    adminNotes?: string
-  ): Promise<{ success: boolean; application?: EtaApplication }> {
-    const apps = getStoredApplications();
-    const index = apps.findIndex((a) => a.id === applicationId || a.referenceNumber === applicationId);
-    if (index === -1) return { success: false };
-
-    const now = new Date().toISOString();
-    const current = apps[index];
-
-    let etaNumber = current.etaNumber;
-    let approvedAt = current.approvedAt;
-    if (status === 'approved' && !etaNumber) {
-      etaNumber = generateEtaGovNumber();
-      approvedAt = now;
-    }
-
-    const updated: EtaApplication = {
-      ...current,
-      status,
-      etaNumber,
-      approvedAt,
-      adminNotes: adminNotes || current.adminNotes,
-      updatedAt: now,
-    };
-
-    apps[index] = updated;
-    saveStoredApplications(apps);
-
+    adminNotes?: string,
+    etaNumber?: string,
+    approvedAt?: string,
+    adminToken?: string
+  ): Promise<{ success: boolean; application?: EtaApplication; error?: string }> {
     try {
-      await fetch(`/api/eta/admin/applications/${encodeURIComponent(applicationId)}`, {
+      const res = await fetch(`/api/admin/eta/applications/${applicationId}`, {
         method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${adminToken || ''}`,
+        },
         body: JSON.stringify({ status, adminNotes, etaNumber, approvedAt }),
       });
-    } catch {
-      // Local storage handled
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        return { success: false, error: data.error || 'Failed to update application on server' };
+      }
+      return { success: true, application: data.application };
+    } catch (err: any) {
+      return { success: false, error: err.message };
     }
+  },
 
-    return { success: true, application: updated };
+  // 8. Admin: Delete Application and its stored documents
+  async deleteApplication(applicationId: string, adminToken?: string): Promise<{ success: boolean; error?: string }> {
+    try {
+      const res = await fetch(`/api/admin/eta/applications/${applicationId}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${adminToken || ''}`,
+        },
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        return { success: false, error: data.error || 'Failed to delete application' };
+      }
+      return { success: true };
+    } catch (err: any) {
+      return { success: false, error: err.message };
+    }
+  },
+
+  // 9. Admin Stats
+  async getStats(adminToken?: string): Promise<any> {
+    try {
+      const res = await fetch('/api/admin/eta/stats', {
+        headers: adminToken ? { Authorization: `Bearer ${adminToken}` } : {},
+      });
+      if (res.ok) {
+        return await res.json();
+      }
+    } catch (err) {
+      console.warn('Failed to fetch stats:', err);
+    }
+    return null;
   },
 };
