@@ -166,22 +166,16 @@ export const Footer: React.FC<FooterProps> = ({
 
               <div className="flex items-start justify-center sm:justify-start gap-2 pt-1">
                 <Mail className="w-4 h-4 text-white shrink-0 mt-0.5" />
-                <div className="flex flex-col gap-1">
+                <div className="flex flex-col gap-1.5">
                   <a
-                    href="mailto:info@pushworldtravelltd.co.ke"
-                    className="hover:text-amber-300 font-medium text-white/90 truncate"
+                    href="mailto:info@pushtravel.co.ke"
+                    className="hover:text-amber-300 font-medium text-white/90 text-xs sm:text-[13px] truncate"
                   >
-                    info@pushworldtravelltd.co.ke
-                  </a>
-                  <a
-                    href="mailto:info@pushtravels.co.ke"
-                    className="hover:text-amber-300 font-medium text-white/90 truncate"
-                  >
-                    info@pushtravels.co.ke
+                    info@pushtravel.co.ke
                   </a>
                   <a
                     href="mailto:pushworldtravelltd@gmail.com"
-                    className="hover:text-amber-300 font-normal text-white/70 text-[11px] truncate"
+                    className="hover:text-amber-300 font-medium text-white/90 text-xs sm:text-[13px] truncate"
                   >
                     pushworldtravelltd@gmail.com
                   </a>

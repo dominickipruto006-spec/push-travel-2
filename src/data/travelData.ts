@@ -70,12 +70,10 @@ export const COMPANY_INFO = {
   phoneFormatted: '0725 356 926 / +254 181 223 222 (Call & WhatsApp)',
   phoneTel: '+254725356926',
   phone2Tel: '+254181223222',
-  email: 'info@pushworldtravelltd.co.ke',
-  email2: 'info@pushtravels.co.ke',
-  email3: 'pushworldtravelltd@gmail.com',
+  email: 'info@pushtravel.co.ke',
+  email2: 'pushworldtravelltd@gmail.com',
   emails: [
-    'info@pushworldtravelltd.co.ke',
-    'info@pushtravels.co.ke',
+    'info@pushtravel.co.ke',
     'pushworldtravelltd@gmail.com',
   ],
   workingHours: {

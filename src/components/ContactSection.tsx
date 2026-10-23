@@ -81,25 +81,17 @@ export const ContactSection: React.FC = () => {
                     <span className="text-sm font-semibold text-slate-800 block">
                       Email Addresses :
                     </span>
-                    <div className="flex flex-col gap-1 mt-1 text-sm">
-                      <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                        <a
-                          href="mailto:info@pushworldtravelltd.co.ke"
-                          className="hover:text-[#ea580c] transition-colors font-semibold text-[#0a2265] hover:underline"
-                        >
-                          info@pushworldtravelltd.co.ke
-                        </a>
-                        <span className="text-slate-300">|</span>
-                        <a
-                          href="mailto:info@pushtravels.co.ke"
-                          className="hover:text-[#ea580c] transition-colors font-semibold text-[#0a2265] hover:underline"
-                        >
-                          info@pushtravels.co.ke
-                        </a>
-                      </div>
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 mt-1 text-sm">
+                      <a
+                        href="mailto:info@pushtravel.co.ke"
+                        className="hover:text-[#ea580c] transition-colors font-semibold text-[#0a2265] hover:underline"
+                      >
+                        info@pushtravel.co.ke
+                      </a>
+                      <span className="hidden sm:inline text-slate-300">|</span>
                       <a
                         href="mailto:pushworldtravelltd@gmail.com"
-                        className="hover:text-[#ea580c] transition-colors font-medium text-slate-600 hover:underline text-xs"
+                        className="hover:text-[#ea580c] transition-colors font-semibold text-[#0a2265] hover:underline"
                       >
                         pushworldtravelltd@gmail.com
                       </a>
