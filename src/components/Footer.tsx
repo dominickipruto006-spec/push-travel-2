@@ -147,7 +147,7 @@ export const Footer: React.FC<FooterProps> = ({
             <div className="space-y-2.5 text-white/85 text-xs sm:text-[13px]">
               <div className="flex items-start justify-center sm:justify-start gap-2">
                 <Phone className="w-4 h-4 text-white shrink-0 mt-0.5" />
-                <div className="flex flex-col gap-1.5">
+                <div className="flex flex-col gap-1">
                   <a
                     href="tel:+254725356926"
                     className="hover:text-amber-300 font-semibold"
@@ -163,14 +163,29 @@ export const Footer: React.FC<FooterProps> = ({
                   </a>
                 </div>
               </div>
-              <div className="flex items-center justify-center sm:justify-start gap-2">
-                <Mail className="w-4 h-4 text-white shrink-0" />
-                <a
-                  href="mailto:pushworldtravelltd@gmail.com"
-                  className="hover:text-amber-300 font-semibold"
-                >
-                  pushworldtravelltd@gmail.com
-                </a>
+
+              <div className="flex items-start justify-center sm:justify-start gap-2 pt-1">
+                <Mail className="w-4 h-4 text-white shrink-0 mt-0.5" />
+                <div className="flex flex-col gap-1">
+                  <a
+                    href="mailto:info@pushworldtravelltd.co.ke"
+                    className="hover:text-amber-300 font-medium text-white/90 truncate"
+                  >
+                    info@pushworldtravelltd.co.ke
+                  </a>
+                  <a
+                    href="mailto:info@pushtravels.co.ke"
+                    className="hover:text-amber-300 font-medium text-white/90 truncate"
+                  >
+                    info@pushtravels.co.ke
+                  </a>
+                  <a
+                    href="mailto:pushworldtravelltd@gmail.com"
+                    className="hover:text-amber-300 font-normal text-white/70 text-[11px] truncate"
+                  >
+                    pushworldtravelltd@gmail.com
+                  </a>
+                </div>
               </div>
             </div>
 
@@ -248,22 +263,42 @@ export const Footer: React.FC<FooterProps> = ({
             </div>
           </div>
 
-          {/* Column 4: Our Office */}
+          {/* Column 4: Our Office & Working Hours */}
           <div>
             <h4 className="font-bold text-white text-base mb-4 tracking-wide font-['Outfit',sans-serif]">
-              Our Office
+              Office &amp; Hours
             </h4>
-            <div className="space-y-2 text-white/90 text-xs sm:text-[13px]">
-              <span className="font-black tracking-wider text-amber-300 block">
-                KENYA
-              </span>
-              <div className="flex items-start justify-center sm:justify-start gap-2">
-                <MapPin className="w-4 h-4 text-white shrink-0 mt-0.5" />
-                <span>Push Building, Thome, Northern Bypass, Nairobi</span>
+            <div className="space-y-3 text-white/90 text-xs sm:text-[13px]">
+              <div>
+                <span className="font-black tracking-wider text-amber-300 block mb-1">
+                  HEADQUARTERS
+                </span>
+                <div className="flex items-start justify-center sm:justify-start gap-2">
+                  <MapPin className="w-4 h-4 text-white shrink-0 mt-0.5" />
+                  <span>Push Building, Thome, Northern Bypass, Nairobi</span>
+                </div>
               </div>
-              <span className="text-[11px] text-white/70 block mt-1 sm:ml-6">
-                Headquarters &amp; Dispatch Fleet Hub
-              </span>
+
+              <div className="pt-2 border-t border-white/10 space-y-1.5">
+                <span className="font-bold text-amber-300 block text-xs uppercase tracking-wider">
+                  Working Hours
+                </span>
+                <div className="text-white/90 space-y-1">
+                  <div className="flex items-center justify-center sm:justify-start gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block"></span>
+                    <span className="font-semibold text-white">Mon – Sat:</span>
+                    <span className="text-emerald-300 font-bold">Open 24 Hours</span>
+                  </div>
+                  <div className="flex items-center justify-center sm:justify-start gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-amber-400 inline-block"></span>
+                    <span className="font-semibold text-white">Sunday:</span>
+                    <span className="text-amber-200 font-bold">Available Online</span>
+                  </div>
+                  <span className="text-[11px] text-white/60 block italic pt-0.5">
+                    (Physical office closed on Sunday; online team available)
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -70,12 +70,20 @@ export const COMPANY_INFO = {
   phoneFormatted: '0725 356 926 / +254 181 223 222 (Call & WhatsApp)',
   phoneTel: '+254725356926',
   phone2Tel: '+254181223222',
-  email: 'pushworldtravelltd@gmail.com',
+  email: 'info@pushworldtravelltd.co.ke',
+  email2: 'info@pushtravels.co.ke',
+  email3: 'pushworldtravelltd@gmail.com',
+  emails: [
+    'info@pushworldtravelltd.co.ke',
+    'info@pushtravels.co.ke',
+    'pushworldtravelltd@gmail.com',
+  ],
   workingHours: {
-    description: 'Available throughout the week, our team is dedicated to crafting tailored itineraries and handling all your safari booking details seamlessly.',
-    monFri: '09:00 AM – 05:00 PM',
-    sat: '09:00 AM – 01:00 PM',
-    sun: 'Office Closed',
+    description: 'Our team is available 24/7 Monday through Saturday to craft tailored itineraries and handle your bookings seamlessly. On Sundays, our team is available online.',
+    monSat: 'Open 24 Hours',
+    sun: 'Available Online (Office Closed for Walk-ins)',
+    monFri: 'Open 24 Hours',
+    sat: 'Open 24 Hours',
   },
   offices: [
     {

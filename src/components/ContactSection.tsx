@@ -73,27 +73,46 @@ export const ContactSection: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-blue-50 text-[#0a2265] flex items-center justify-center shrink-0">
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-full bg-blue-50 text-[#0a2265] flex items-center justify-center shrink-0 mt-0.5">
                     <Mail className="w-4 h-4 text-[#0a2265]" />
                   </div>
-                  <span className="text-sm font-semibold text-slate-800">
-                    Email :{' '}
-                    <a
-                      href="mailto:pushworldtravelltd@gmail.com"
-                      className="hover:text-[#ea580c] transition-colors"
-                    >
-                      pushworldtravelltd@gmail.com
-                    </a>
-                  </span>
+                  <div>
+                    <span className="text-sm font-semibold text-slate-800 block">
+                      Email Addresses :
+                    </span>
+                    <div className="flex flex-col gap-1 mt-1 text-sm">
+                      <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                        <a
+                          href="mailto:info@pushworldtravelltd.co.ke"
+                          className="hover:text-[#ea580c] transition-colors font-semibold text-[#0a2265] hover:underline"
+                        >
+                          info@pushworldtravelltd.co.ke
+                        </a>
+                        <span className="text-slate-300">|</span>
+                        <a
+                          href="mailto:info@pushtravels.co.ke"
+                          className="hover:text-[#ea580c] transition-colors font-semibold text-[#0a2265] hover:underline"
+                        >
+                          info@pushtravels.co.ke
+                        </a>
+                      </div>
+                      <a
+                        href="mailto:pushworldtravelltd@gmail.com"
+                        className="hover:text-[#ea580c] transition-colors font-medium text-slate-600 hover:underline text-xs"
+                      >
+                        pushworldtravelltd@gmail.com
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* 2. Our Working Time matching Screenshot 1 */}
+            {/* 2. Our Working Time & Availability */}
             <div>
               <h3 className="text-xl sm:text-2xl font-bold text-[#0a2265] font-['Outfit',sans-serif] mb-2">
-                Our Working Time
+                Our Working Time &amp; Availability
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4 font-normal">
                 {COMPANY_INFO.workingHours.description}
@@ -101,24 +120,30 @@ export const ContactSection: React.FC = () => {
 
               <div className="space-y-2.5 text-xs sm:text-sm font-medium text-slate-700">
                 <div className="flex items-center gap-3">
-                  <div className="w-7 h-7 rounded-full bg-blue-50 text-[#0a2265] flex items-center justify-center shrink-0">
-                    <Clock className="w-3.5 h-3.5 text-[#0a2265]" />
+                  <div className="w-7 h-7 rounded-full bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
+                    <Clock className="w-3.5 h-3.5 text-emerald-600" />
                   </div>
-                  <span>Monday – Friday : {COMPANY_INFO.workingHours.monFri}</span>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="font-semibold text-slate-800">Monday – Saturday :</span>
+                    <span className="inline-flex items-center gap-1 font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md">
+                      Open 24 Hours
+                    </span>
+                  </div>
                 </div>
 
                 <div className="flex items-center gap-3">
                   <div className="w-7 h-7 rounded-full bg-blue-50 text-[#0a2265] flex items-center justify-center shrink-0">
-                    <Clock className="w-3.5 h-3.5 text-[#0a2265]" />
+                    <Globe className="w-3.5 h-3.5 text-[#0a2265]" />
                   </div>
-                  <span>Saturday : {COMPANY_INFO.workingHours.sat}</span>
-                </div>
-
-                <div className="flex items-center gap-3">
-                  <div className="w-7 h-7 rounded-full bg-blue-50 text-rose-700 flex items-center justify-center shrink-0">
-                    <X className="w-3.5 h-3.5" />
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="font-semibold text-slate-800">Sunday :</span>
+                    <span className="inline-flex items-center gap-1 font-bold text-[#0a2265] bg-blue-50 px-2 py-0.5 rounded-md">
+                      Available Online
+                    </span>
+                    <span className="text-xs text-slate-500 italic">
+                      (Physical office closed; our online team is fully active)
+                    </span>
                   </div>
-                  <span className="text-slate-500">Sunday ( Office Closed )</span>
                 </div>
               </div>
             </div>

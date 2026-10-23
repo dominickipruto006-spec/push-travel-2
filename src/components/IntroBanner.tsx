@@ -17,14 +17,17 @@ export const IntroBanner: React.FC<IntroBannerProps> = ({
 
   return (
     <section id="about" className="relative py-14 sm:py-18 bg-white border-b border-slate-200/70 overflow-hidden">
-      {/* Faded Background Image - 1st image from user (Savanna Elephant Herd) */}
+      {/* Faded Background Image - Image 1 (Sunset Karst Bay & Cruise Ship) */}
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
         <img
-          src="/images/bg_intro_jambo.png"
-          alt="Savanna Elephant Herd"
-          className="w-full h-full object-cover object-center opacity-55 sm:opacity-60"
+          src="/images/bg_section1_sunset_karst.png"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = '/assets/aistudio/image_6efe0117.png';
+          }}
+          alt="Push World Travel Sunset Cruise Destination"
+          className="w-full h-full object-cover object-center opacity-55 sm:opacity-65"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-white/10 to-white/60" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/20 to-white/70" />
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6">

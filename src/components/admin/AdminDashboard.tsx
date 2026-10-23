@@ -6,6 +6,7 @@ import {
   Search,
   Filter,
   Eye,
+  EyeOff,
   Download,
   Trash2,
   CheckCircle2,
@@ -44,8 +45,9 @@ interface AdminDashboardProps {
 export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigateHome }) => {
   // Authentication State
   const [currentUser, setCurrentUser] = useState<AdminUser | null>(adminAuthService.getCurrentUser());
-  const [loginEmail, setLoginEmail] = useState('admin@pushworldtravel.com');
-  const [loginPassword, setLoginPassword] = useState('PushWorld@2026!');
+  const [loginEmail, setLoginEmail] = useState('');
+  const [loginPassword, setLoginPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [loginError, setLoginError] = useState<string | null>(null);
   const [isLoggingIn, setIsLoggingIn] = useState(false);
 
@@ -388,65 +390,73 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigateHome }
           </div>
 
           {/* Form */}
-          <form onSubmit={handleLogin} className="p-6 space-y-4">
+          <form onSubmit={handleLogin} className="p-6 sm:p-8 space-y-5">
             {loginError && (
-              <div className="p-3 bg-red-50 border border-red-200 text-red-700 text-xs rounded-xl flex items-center gap-2">
+              <div className="p-3.5 bg-red-50 border border-red-200 text-red-700 text-xs rounded-xl flex items-center gap-2.5">
                 <AlertTriangle className="w-4 h-4 shrink-0 text-red-600" />
-                <span>{loginError}</span>
+                <span className="font-medium">{loginError}</span>
               </div>
             )}
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                Admin Email Address
+              <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
+                Administrator Email Address
               </label>
               <div className="relative">
                 <input
                   type="email"
                   value={loginEmail}
                   onChange={(e) => setLoginEmail(e.target.value)}
-                  placeholder="admin@pushworldtravel.com"
-                  className="w-full pl-9 pr-3 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-[#0a2265] focus:outline-none"
+                  placeholder="Enter authorized administrator email"
+                  className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-100 hover:bg-slate-50 focus:bg-white border-2 border-slate-300 focus:border-[#0a2265] text-slate-900 font-semibold text-sm placeholder:text-slate-400 placeholder:font-normal focus:outline-none focus:ring-4 focus:ring-[#0a2265]/15 transition-all shadow-xs"
                   required
+                  autoComplete="email"
                 />
-                <Mail className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                <Mail className="w-5 h-5 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+              <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">
                 Administrator Password
               </label>
               <div className="relative">
                 <input
-                  type="password"
+                  type={showPassword ? 'text' : 'password'}
                   value={loginPassword}
                   onChange={(e) => setLoginPassword(e.target.value)}
-                  placeholder="••••••••••••"
-                  className="w-full pl-9 pr-3 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-[#0a2265] focus:outline-none"
+                  placeholder="Enter administrator password"
+                  className="w-full pl-10 pr-12 py-3 rounded-xl bg-slate-100 hover:bg-slate-50 focus:bg-white border-2 border-slate-300 focus:border-[#0a2265] text-slate-900 font-semibold text-sm placeholder:text-slate-400 placeholder:font-normal focus:outline-none focus:ring-4 focus:ring-[#0a2265]/15 transition-all shadow-xs"
                   required
+                  autoComplete="current-password"
                 />
-                <Lock className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                <Lock className="w-5 h-5 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 text-slate-500 hover:text-[#0a2265] rounded-lg transition-colors cursor-pointer"
+                  title={showPassword ? 'Hide password' : 'Show password'}
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
+                >
+                  {showPassword ? (
+                    <EyeOff className="w-4 h-4" />
+                  ) : (
+                    <Eye className="w-4 h-4" />
+                  )}
+                </button>
               </div>
             </div>
 
-            <div className="p-3 bg-blue-50/70 rounded-xl border border-blue-200 text-[11px] text-slate-600 space-y-1">
-              <span className="font-bold text-[#0a2265] block">Default Admin Credentials:</span>
-              <div className="flex justify-between">
-                <span>Email:</span>
-                <code className="font-mono text-slate-900 font-bold">admin@pushworldtravel.com</code>
-              </div>
-              <div className="flex justify-between">
-                <span>Password:</span>
-                <code className="font-mono text-slate-900 font-bold">PushWorld@2026!</code>
-              </div>
+            <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 text-[11px] text-slate-600 flex items-center gap-2.5">
+              <ShieldCheck className="w-4 h-4 text-[#0a2265] shrink-0" />
+              <span>Restricted authorized staff portal. All administrative access is logged and audited.</span>
             </div>
 
             <div className="pt-2">
               <button
                 type="submit"
                 disabled={isLoggingIn}
-                className="w-full py-3 bg-[#0a2265] hover:bg-[#07194a] text-white font-bold text-xs sm:text-sm uppercase tracking-wider rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                className="w-full py-3.5 bg-[#0a2265] hover:bg-[#07194a] text-white font-bold text-xs sm:text-sm uppercase tracking-wider rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
               >
                 {isLoggingIn ? (
                   <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -463,7 +473,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigateHome }
               <button
                 type="button"
                 onClick={onNavigateHome}
-                className="text-xs text-slate-500 hover:text-[#0a2265] font-semibold cursor-pointer"
+                className="text-xs text-slate-600 hover:text-[#0a2265] font-semibold cursor-pointer transition-colors"
               >
                 ← Return to Push World Travel Website
               </button>
@@ -525,6 +535,16 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigateHome }
               <Database className="w-3.5 h-3.5 text-emerald-400" />
               <span>{supabaseStatus?.configured ? 'Supabase Connected' : 'Local Persistence (Dual-Mode)'}</span>
             </div>
+
+            <a
+              href="/push-world-travel-dist.zip"
+              download="push-world-travel-dist.zip"
+              className="hidden md:flex items-center gap-1 text-xs bg-amber-400 hover:bg-amber-300 text-slate-900 px-3 py-1.5 rounded-lg font-bold transition-colors cursor-pointer shadow-xs"
+              title="Download HostAfrica production build ZIP"
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span>HostAfrica ZIP</span>
+            </a>
 
             <button
               onClick={onNavigateHome}

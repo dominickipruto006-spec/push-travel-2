@@ -57,14 +57,17 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
 
       {/* 3. Discover By Feature Section - Clear gateways to dedicated pages */}
       <section className="relative py-16 sm:py-20 bg-white border-b border-slate-200 overflow-hidden">
-        {/* Faded Background Image - 2nd image from user (Wildebeest Migration River Crossing) */}
+        {/* Faded Background Image - Image 2 (Daylight Karst Bay & Cruise Ship) */}
         <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
           <img
-            src="/images/bg_your_world_journey.png"
-            alt="Wildebeest River Crossing Migration"
-            className="w-full h-full object-cover object-center opacity-55 sm:opacity-60"
+            src="/images/bg_section2_daylight_bay.png"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = '/assets/aistudio/image_610174a1.png';
+            }}
+            alt="Your World Our Journey Cruise Destination"
+            className="w-full h-full object-cover object-center opacity-55 sm:opacity-65"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-white/10 to-white/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/20 to-white/70" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
